@@ -3,6 +3,7 @@ package com.bod.entity;
 import java.util.Objects;
 
 public class Food {
+    private int id;
     private String name;
     private double amount;
     private int number;
@@ -90,5 +91,13 @@ public class Food {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getAmount(), getNumber(), getCalories(), getProtein(), getFat(), getCarbohydrates());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

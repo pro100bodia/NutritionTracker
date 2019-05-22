@@ -1,20 +1,40 @@
 package com.bod.entity;
 
-//todo get values form .properties
+import java.util.Properties;
+
 public enum LifeStyleEnum {
-    MINIMAL(1.2),
-    AVERAGE(1.375),
-    INCREASED(1.55),
-    HIGH(1.725),
-    ULTIMATE(1.9);
+    M,
+    A,
+    I,
+    H,
+    U;
 
-    double coef;
+    private static final String PATH = "/amrConstants.properties";
 
-    LifeStyleEnum(double c) {
-        coef = c;
+//    private static final Logger logger = LoggerFactory.getLogger(Constants.class);
+
+    private static Properties properties;
+
+    private String value;
+
+    private void init() {
+        if (properties == null) {
+            properties = new Properties();
+            try {
+                properties.load(LifeStyleEnum.class.getResourceAsStream(PATH));
+            } catch (Exception e) {
+//                logger.error("Unable to load " + PATH + " file from classpath.", e);
+                System.exit(1);
+            }
+        }
+        value = (String) properties.get(this.toString());
     }
 
-    double getValue() {
-        return coef;
+    public String getValue() {
+        if (value == null) {
+            init();
+        }
+        return value;
     }
+
 }

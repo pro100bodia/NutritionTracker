@@ -17,8 +17,7 @@ public class Client {
     private LifeStyleEnum lifeStyle;
     private NutritiveValue norm;
 
-    public Client(int id, String name, String password) {
-        this.id = id;
+    public Client(String name, String password) {
         this.name = name;
         this.password = password;
     }

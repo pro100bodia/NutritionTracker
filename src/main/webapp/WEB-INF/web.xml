@@ -4,4 +4,23 @@
 
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>HelloServlet</servlet-name>
+        <servlet-class>com.bod.web.HelloServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HelloServlet</servlet-name>
+        <url-pattern>/servlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletForward</servlet-name>
+        <servlet-class>com.bod.web.ServletForward</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletForward</servlet-name>
+        <url-pattern>/forward</url-pattern>
+    </servlet-mapping>
 </web-app>

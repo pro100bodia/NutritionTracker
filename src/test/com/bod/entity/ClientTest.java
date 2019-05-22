@@ -30,15 +30,16 @@ public class ClientTest {
         id = 0;
         name = "Bohdan";
         password = "1111";
-        client = new Client(id, name, password);
+        client = new Client(name, password);
+        client.setId(0);
         client.setNorm(new NutritiveValue(1716, 429, 190.6, 429));
         client.setDailyRation(new DailyRation());
         client.setDeflectionHistory(new DeflectionHistory(new NutritiveValue(1716, 429, 190.6, 429), LocalDate.of(2019, 05, 13)));
         client.setBirthDate(LocalDate.of(2000, 05, 17));
-        client.setGender(GenderEnum.MALE);
+        client.setGender(GenderEnum.M);
         client.setHeight(165.9);
         client.setWeight(66.6);
-        client.setLifeStyle(LifeStyleEnum.MINIMAL);
+        client.setLifeStyle(LifeStyleEnum.M);
     }
 
     @Test
@@ -77,7 +78,7 @@ public class ClientTest {
 
     @Test
     public void getGender() {
-        assertEquals(GenderEnum.MALE, client.getGender());
+        assertEquals(GenderEnum.M, client.getGender());
     }
 
     @Test
@@ -97,6 +98,6 @@ public class ClientTest {
 
     @Test
     public void getLifeStyle() {
-        assertEquals(LifeStyleEnum.MINIMAL, client.getLifeStyle());
+        assertEquals(LifeStyleEnum.M, client.getLifeStyle());
     }
 }

@@ -1,6 +1,7 @@
 CREATE DATABASE nutrition CHARSET utf8;
 
-use nutrition;
+USE nutrition;
+
 CREATE TABLE coefs(
 	value VARCHAR(20) PRIMARY KEY,
     men   DOUBLE      NOT NULL,
@@ -13,8 +14,9 @@ INSERT INTO coefs
           ('height', 4.799,   3.098),
           ('age',    5.677,   4.330);
           
-SELECT * FROM COEFS;
-DROP TABLE food;
+SELECT * FROM coefs;
+
+
 CREATE TABLE food(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
@@ -49,6 +51,7 @@ INSERT INTO food VALUES
     
 SELECT * FROM food;
 
+
 CREATE TABLE clients(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
@@ -60,13 +63,18 @@ CREATE TABLE clients(
     lifestyle ENUM('M', 'L', 'A', 'H', 'E') NOT NULL
 );
 
+SELECT id, date_of_birth FROM clients WHERE id=1;
+UPDATE clients SET height=170.0 WHERE id=1;
+
 INSERT INTO clients VALUES
 	(NULL, 'Bohdan', 'sudo ap-install mysqlworkbench', '2000-5-17', 'M', 165.9, 66.6, 'L'),
 	(NULL, 'Sasha', '$n`t2ch', '2000-8-24', 'M', 178.9, 60.6, 'L'),
 	(NULL, 'Nick', 'lukin4you', '2000-9-12', 'M', 180.0, 68.8, 'E'),
-	(NULL, 'Bohdan', 'ooo|vosmiklasssnica|', '2000-9-21', 'M', 185.5, 64.3, 'M');
-    
+	(NULL, 'Dima', 'ooo|vosmiklasssnica|', '2000-9-21', 'M', 185.5, 64.3, 'M'),
+	(NULL, 'Alexandra', '158,962,555,217,826,360,000', '2000-9-21', 'F', 185.5, 64.3, 'H');
+
 SELECT * FROM clients;
+
 
 CREATE TABLE deflection_history(
 	record_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -89,7 +97,6 @@ CREATE TABLE food_history(
 );
 
 
-SELECT * FROM coefs;
 UPDATE coefs SET value=0 WHERE value="age";
 UPDATE coefs SET value=1 WHERE value="gender";
 UPDATE coefs SET value=2 WHERE value="height";
@@ -98,6 +105,20 @@ UPDATE coefs SET value=3 WHERE value="weight";
 ALTER TABLE coefs
 	MODIFY value TINYINT;
     
-SELECT * FROM deflection_history;
+
 ALTER TABLE deflection_history
 	CHANGE COLUMN record_id id INT;
+
+SELECT * FROM food;
+DELETE FROM food WHERE id = 7;
+        
+UPDATE food SET 
+		name='french fries',
+        number=50,
+        calories=126,
+        proteins=1.6,
+        fats=6.4,
+        carbohydrates=15.6
+	WHERE id=3;
+    
+SELECT * FROM food WHERE id=3;
