@@ -1,38 +1,39 @@
 package com.bod.repository;
 
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class NutritionConnection {
     static Connection connection;
 
-    public static void establishConnection() throws ClassNotFoundException, SQLException {
+    private static BasicDataSource ds = new BasicDataSource();
 
-        try (InputStream input = NutritionConnection.class.getClassLoader().getResourceAsStream("jdbcProperties.properties")) {
+    static {
+        try (InputStream input = NutritionConnection.class.getClassLoader().getResourceAsStream("db_connection.properties")) {
             Properties jdbcProps = new Properties();
 
 
             jdbcProps.load(input);
 
-            String JDBC_DRIVER = jdbcProps.getProperty("JDBC_DRIVER");
-            String DATABASE_URL = jdbcProps.getProperty("DATABASE_URL");
-            String USER = jdbcProps.getProperty("USER");
-            String PASSWORD = jdbcProps.getProperty("PASSWORD");
+            ds.setUrl(jdbcProps.getProperty("DATABASE_URL"));
+            ds.setUsername(jdbcProps.getProperty("USER"));
+            ds.setPassword(jdbcProps.getProperty("PASSWORD"));
+            ds.setMinIdle(5);
+            ds.setMaxIdle(10);
+            ds.setMaxOpenPreparedStatements(100);
 
-            Class.forName(JDBC_DRIVER);
-
-            connection = DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void closeConnection() throws SQLException {
-        connection.close();
+    public static Connection getConnection() throws SQLException {
+        return ds.getConnection();
     }
 }
