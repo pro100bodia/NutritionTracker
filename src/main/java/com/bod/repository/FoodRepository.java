@@ -20,12 +20,12 @@ public class FoodRepository implements EntityRepository, UpdateQuery {
         PreparedStatement insertFoodUnit = NutritionConnection.connection
                 .prepareStatement("INSERT INTO food VALUES(NULL, ?, ?, ?, ?, ?, ?)");
 
-        insertFoodUnit.setString(1, foodUnit.getName());//name
-        insertFoodUnit.setInt(2, foodUnit.getNumber());//number
-        insertFoodUnit.setDouble(3, foodUnit.getCalories());//calories
-        insertFoodUnit.setDouble(4, foodUnit.getProtein());//proteins
-        insertFoodUnit.setDouble(5, foodUnit.getFat());//fats
-        insertFoodUnit.setDouble(6, foodUnit.getCarbohydrates());//carbohydrates
+        insertFoodUnit.setString(1, foodUnit.getName());
+        insertFoodUnit.setInt(2, foodUnit.getNumber());
+        insertFoodUnit.setDouble(3, foodUnit.getCalories());
+        insertFoodUnit.setDouble(4, foodUnit.getProtein());
+        insertFoodUnit.setDouble(5, foodUnit.getFat());
+        insertFoodUnit.setDouble(6, foodUnit.getCarbohydrates());
 
         insertFoodUnit.execute();
 

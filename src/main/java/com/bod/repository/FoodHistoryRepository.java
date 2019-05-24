@@ -15,6 +15,7 @@ public class FoodHistoryRepository implements EntityRepository {
     private Client client;
     private LocalDate date;
 
+
     public FoodHistoryRepository(int historyId, Food foodUnit, Client client, LocalDate date) {
         this.historyId = historyId;
         this.foodUnit = foodUnit;
@@ -23,17 +24,22 @@ public class FoodHistoryRepository implements EntityRepository {
     }
 
     @Override
-    public void createEntity() throws SQLException {
-        PreparedStatement createPreparedStatement = NutritionConnection.connection
-                .prepareStatement("INSERT INTO food_history VALUES(NULL, ?, ?, ?, ?)");
+    public void createEntity() {
+        try {
+            PreparedStatement createPreparedStatement = NutritionConnection.connection
+                    .prepareStatement("INSERT INTO food_history VALUES(NULL, ?, ?, ?, ?)");
 
-        createPreparedStatement.setInt(1, client.getId());
-        createPreparedStatement.setInt(2, foodUnit.getId());
-        createPreparedStatement.setDate(2, java.sql.Date.valueOf(date));
+            createPreparedStatement.setInt(1, client.getId());
+            createPreparedStatement.setInt(2, foodUnit.getId());
+            createPreparedStatement.setDate(2, java.sql.Date.valueOf(date));
 
-        createPreparedStatement.execute();
+            createPreparedStatement.execute();
 
-        createPreparedStatement.close();
+
+            createPreparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
