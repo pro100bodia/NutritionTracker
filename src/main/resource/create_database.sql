@@ -3,18 +3,16 @@ CREATE DATABASE nutrition CHARSET utf8;
 USE nutrition;
 
 CREATE TABLE coefs(
-	value VARCHAR(20) PRIMARY KEY,
+	value TINYINT PRIMARY KEY,
     men   DOUBLE      NOT NULL,
-    women DOUBLE      NOT NULL
+    women DOUBLE      NULL
 );
 
 INSERT INTO coefs 
-	VALUES('gender', 88.3962, 447.593),
-          ('weight', 13.397,  9.247),
-          ('height', 4.799,   3.098),
-          ('age',    5.677,   4.330);
-          
-SELECT * FROM coefs;
+	VALUES(0, 88.3962, 447.593),  /*gender*/
+          (1, 13.397,  9.247),    /*weight*/
+          (2, 4.799,   3.098),    /*height*/
+          (3,    5.677,   4.330); /*age*/
 
 
 CREATE TABLE food(
@@ -48,8 +46,6 @@ INSERT INTO food VALUES
     (NULL, 'bird-cherry', 100, 50, 1.1, 0.4, 11.5),
     (NULL, 'cherry', 100, 52, 0.8, 0.5, 11.3),
     (NULL, 'pear', 100, 42, 0.4, 0.3, 10.9);
-    
-SELECT * FROM food;
 
 
 CREATE TABLE clients(
@@ -63,21 +59,16 @@ CREATE TABLE clients(
     lifestyle ENUM('M', 'L', 'A', 'H', 'E') NOT NULL
 );
 
-SELECT id, date_of_birth FROM clients WHERE id=1;
-UPDATE clients SET height=170.0 WHERE id=1;
-
 INSERT INTO clients VALUES
-	(NULL, 'Bohdan', 'sudo ap-install mysqlworkbench', '2000-5-17', 'M', 165.9, 66.6, 'L'),
+	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbench', '2000-5-17', 'M', 165.9, 66.6, 'L'),
 	(NULL, 'Sasha', '$n`t2ch', '2000-8-24', 'M', 178.9, 60.6, 'L'),
 	(NULL, 'Nick', 'lukin4you', '2000-9-12', 'M', 180.0, 68.8, 'E'),
 	(NULL, 'Dima', 'ooo|vosmiklasssnica|', '2000-9-21', 'M', 185.5, 64.3, 'M'),
 	(NULL, 'Alexandra', '158,962,555,217,826,360,000', '2000-9-21', 'F', 185.5, 64.3, 'H');
 
-SELECT * FROM clients;
-
 
 CREATE TABLE deflection_history(
-	record_id INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
     date DATE NOT NULL,
     calories FLOAT NOT NULL,
@@ -87,6 +78,7 @@ CREATE TABLE deflection_history(
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
+
 CREATE TABLE food_history(
 	history_id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
@@ -95,30 +87,3 @@ CREATE TABLE food_history(
     FOREIGN KEY (client_id) REFERENCES clients(id),
     FOREIGN KEY (food_id) REFERENCES food(id)
 );
-
-
-UPDATE coefs SET value=0 WHERE value="age";
-UPDATE coefs SET value=1 WHERE value="gender";
-UPDATE coefs SET value=2 WHERE value="height";
-UPDATE coefs SET value=3 WHERE value="weight";
-
-ALTER TABLE coefs
-	MODIFY value TINYINT;
-    
-
-ALTER TABLE deflection_history
-	CHANGE COLUMN record_id id INT;
-
-SELECT * FROM food;
-DELETE FROM food WHERE id = 7;
-        
-UPDATE food SET 
-		name='french fries',
-        number=50,
-        calories=126,
-        proteins=1.6,
-        fats=6.4,
-        carbohydrates=15.6
-	WHERE id=3;
-    
-SELECT * FROM food WHERE id=3;
