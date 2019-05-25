@@ -11,10 +11,6 @@ public class FoodBuilder {
         foodUnit.setName(name);
     }
 
-    public void setAmount(double amount) {
-        foodUnit.setAmount(amount);
-    }
-
     public void setNumber(int number) {
         foodUnit.setNumber(number);
     }

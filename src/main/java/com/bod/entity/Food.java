@@ -5,18 +5,11 @@ import java.util.Objects;
 public class Food {
     private int id;
     private String name;
-    private double amount;
     private int number;
     private double calories;
     private double protein;
     private double fat;
     private double carbohydrates;
-
-    public NutritiveValue getValue() {
-        double multiplier = amount / number;
-
-        return new NutritiveValue(multiplier * calories, multiplier * protein, multiplier * fat, multiplier * carbohydrates);
-    }
 
     public String getName() {
         return name;
@@ -24,14 +17,6 @@ public class Food {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public int getNumber() {
@@ -79,8 +64,7 @@ public class Food {
         if (this == o) return true;
         if (!(o instanceof Food)) return false;
         Food food = (Food) o;
-        return Double.compare(food.getAmount(), getAmount()) == 0 &&
-                getNumber() == food.getNumber() &&
+        return getNumber() == food.getNumber() &&
                 Double.compare(food.getCalories(), getCalories()) == 0 &&
                 Double.compare(food.getProtein(), getProtein()) == 0 &&
                 Double.compare(food.getFat(), getFat()) == 0 &&
@@ -90,7 +74,7 @@ public class Food {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAmount(), getNumber(), getCalories(), getProtein(), getFat(), getCarbohydrates());
+        return Objects.hash(getName(), getNumber(), getCalories(), getProtein(), getFat(), getCarbohydrates());
     }
 
     public int getId() {
