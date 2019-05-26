@@ -6,21 +6,16 @@ public class Client {
     private int id;
     private String name;
     private String password;
-
+    private String img;
+    private String email;
     private DailyRation dailyRation;
-
     private DeflectionHistory deflectionHistory;
     private LocalDate birthDate;
-    private GenderEnum gender;
+    private Gender gender;
     private double height;
     private double weight;
-    private LifeStyleEnum lifeStyle;
+    private LifeStyle lifeStyle;
     private NutritiveValue norm;
-
-    public Client(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
 
     public NutritiveValue getNorm() {
         return norm;
@@ -74,11 +69,11 @@ public class Client {
         this.birthDate = birthLocalDate;
     }
 
-    public GenderEnum getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(GenderEnum gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -106,13 +101,28 @@ public class Client {
         this.birthDate = birthDate;
     }
 
-    public LifeStyleEnum getLifeStyle() {
+    public LifeStyle getLifeStyle() {
         return lifeStyle;
     }
 
-    public void setLifeStyle(LifeStyleEnum lifeStyle) {
+    public void setLifeStyle(LifeStyle lifeStyle) {
         this.lifeStyle = lifeStyle;
     }
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 }

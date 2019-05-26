@@ -1,17 +1,27 @@
 package com.bod.repository.specifications;
 
-import com.bod.entity.Client;
+import com.bod.repository.NutritionConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ClientUpdateWeightSpecification implements SQLSpecification {
-    private Client client;
+    private double weight;
+    private int id;
 
-    public ClientUpdateWeightSpecification(Client client) {
-        this.client = client;
+    public ClientUpdateWeightSpecification(double weight, int id) {
+        this.weight = weight;
+        this.id = id;
     }
 
     @Override
-    public String toSqlClauses() {
-        return String.format("UPDATE clients SET weight=%f WHERE id=%d",
-                client.getWeight(), client.getId());
+    public PreparedStatement toSqlClauses() throws SQLException {
+        PreparedStatement updateStatement = NutritionConnection.getConnection()
+                .prepareStatement("UPDATE clients SET weight=? WHERE id=?");
+
+        updateStatement.setDouble(1, weight);
+        updateStatement.setDouble(2, id);
+
+        return updateStatement;
     }
 }

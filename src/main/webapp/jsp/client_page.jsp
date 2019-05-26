@@ -10,18 +10,18 @@
 <!-- Client Data -->
 <div class="container" id="client-data">
     <div class="row">
-        <div class="col-sm-3"><img src="c:out"></div>
+        <div class="col-sm-3"><img src="<c:out value='${image}' default='../img/avatar/default.png'>"/></div>
         <div class="col-sm-5">
 
             <div class="row">
                 <div class="col-sm-9">
                     <list>
-                        <li><input id="personal-param-1" type="text" value="c:out name"/></li>
-                        <li><input id="personal-param-2" type="text" value="c:out birthdate"/></li>
-                        <li><input id="personal-param-3" type="text" value="c:out gender"/></li>
-                        <li><input id="personal-param-4" type="text" value="c:out height"/></li>
-                        <li><input id="personal-param-5" type="text" value="c:out weight"/></li>
-                        <li><input id="personal-param-6" type="text" value="c:out lifeStyle"/></li>
+                        <li><input id="personal-param-1" type="text" value="<c:out value=${name}"/></li>
+                        <li><input id="personal-param-2" type="text" value="<c:out value=${age}>"/></li>
+                        <li><input id="personal-param-3" type="text" value="<c:out value=${gender}>"/></li>
+                        <li><input id="personal-param-4" type="text" value="<c:out value=${height}>"/></li>
+                        <li><input id="personal-param-5" type="text" value="<c:out value=${weight}>"/></li>
+                        <li><input id="personal-param-6" type="text" value="<c:out value=${lifeStyle}>"/></li>
                     </list>
                 </div>
                 <div class="col-sm-3">

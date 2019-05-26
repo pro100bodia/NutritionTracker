@@ -1,33 +1,23 @@
 package com.bod.repository;
 
-import com.bod.entity.Client;
 import com.bod.repository.specifications.SQLSpecification;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuery {
-    private Client client;
-
-    public ClientRepository(Client client) {
-        this.client = client;
-    }
-
     @Override
-    public void createEntity() throws SQLException {
-        PreparedStatement createStatement = NutritionConnection.connection
+    public void createEntity(Object... args) throws SQLException {
+        PreparedStatement createStatement = NutritionConnection.getConnection()
                 .prepareStatement("INSERT INTO clients VALUES " +
                         "(NULL, ?, ?, ?, ?, ?, ?, ?)");
 
-        createStatement.setString(1, client.getName());
-        createStatement.setString(2, client.getPassword());
-        createStatement.setDate(3, java.sql.Date.valueOf(client.getBirthDate()));
-        createStatement.setString(4, client.getGender().name());
-        createStatement.setDouble(5, client.getHeight());
-        createStatement.setDouble(6, client.getWeight());
-        createStatement.setString(7, client.getLifeStyle().name());
+        createStatement.setString(1, (String) args[0]);
+        createStatement.setString(2, (String) args[1]);
+        createStatement.setDate(3, (Date) args[2]);
+        createStatement.setString(4, (String) args[3]);
+        createStatement.setDouble(5, (Double) args[4]);
+        createStatement.setDouble(6, (Double) args[5]);
+        createStatement.setString(7, (String) args[6]);
 
         createStatement.execute();
 
@@ -35,21 +25,21 @@ public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuer
     }
 
     @Override
-    public ResultSet readEntity() throws SQLException {
-        PreparedStatement readStatement = NutritionConnection.connection
-                .prepareStatement("SELECT * FROM clients WHERE id=?");
+    public ResultSet readEntity(int id) throws SQLException {
+        PreparedStatement readStatement = NutritionConnection.getConnection()
+                .prepareStatement("SELECT img, name, birthdate, gender, height, weight, lifestyle FROM clients WHERE id=?");
 
-        readStatement.setInt(1, client.getId());
+        readStatement.setInt(1, id);
 
         return readStatement.executeQuery();
     }
 
     @Override
-    public void deleteEntity() throws SQLException {
-        PreparedStatement readStatement = NutritionConnection.connection
+    public void deleteEntity(int id) throws SQLException {
+        PreparedStatement readStatement = NutritionConnection.getConnection()
                 .prepareStatement("DELETE FROM clients WHERE id=?");
 
-        readStatement.setInt(1, client.getId());
+        readStatement.setInt(1, id);
 
         readStatement.execute();
 
@@ -58,18 +48,18 @@ public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuer
 
     @Override
     public ResultSet specificReadQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificReadStatement = NutritionConnection.connection.createStatement();
+        Statement specificReadStatement = NutritionConnection.getConnection().createStatement();
 
-        return specificReadStatement.executeQuery(sqlSpecification.toSqlClauses());
+        return sqlSpecification.toSqlClauses().executeQuery();
 
 
     }
 
     @Override
     public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificUpdateStatement = NutritionConnection.connection.createStatement();
+        Statement specificUpdateStatement = NutritionConnection.getConnection().createStatement();
 
-        int result = specificUpdateStatement.executeUpdate(sqlSpecification.toSqlClauses());
+        int result = sqlSpecification.toSqlClauses().executeUpdate();
 
         specificUpdateStatement.close();
 

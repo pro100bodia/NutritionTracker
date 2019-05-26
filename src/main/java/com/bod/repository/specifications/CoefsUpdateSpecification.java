@@ -1,5 +1,10 @@
 package com.bod.repository.specifications;
 
+import com.bod.repository.NutritionConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class CoefsUpdateSpecification implements SQLSpecification {
     private int id;
     private double forMen, forWomen;
@@ -11,8 +16,14 @@ public class CoefsUpdateSpecification implements SQLSpecification {
     }
 
     @Override
-    public String toSqlClauses() {
-        return String.format("UPDATE coefs SET men=%f, women=%f WHERE id=%d",
-                forMen, forWomen, id);
+    public PreparedStatement toSqlClauses() throws SQLException {
+        PreparedStatement updateStatement = NutritionConnection.getConnection()
+                .prepareStatement("UPDATE coefs SET men=?, women=? WHERE id=?");
+
+        updateStatement.setDouble(1, forMen);
+        updateStatement.setDouble(2, forWomen);
+        updateStatement.setInt(2, id);
+
+        return updateStatement;
     }
 }

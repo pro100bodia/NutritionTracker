@@ -1,17 +1,24 @@
 package com.bod.repository.specifications;
 
-import com.bod.entity.Client;
+import com.bod.repository.NutritionConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ClientReadBirthDateSpecification implements SQLSpecification {
-    private Client client;
+    private int id;
 
-    public ClientReadBirthDateSpecification(Client client) {
-        this.client = client;
+    public ClientReadBirthDateSpecification(int id) {
+        this.id = id;
     }
 
     @Override
-    public String toSqlClauses() {
-        return String.format("SELECT date_of_birth FROM clients WHERE id=%d",
-                client.getId());
+    public PreparedStatement toSqlClauses() throws SQLException {
+        PreparedStatement readStatement = NutritionConnection.getConnection()
+                .prepareStatement("SELECT date_of_birth FROM clients WHERE id=?");
+
+        readStatement.setInt(1, id);
+
+        return readStatement;
     }
 }

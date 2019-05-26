@@ -2,47 +2,46 @@ package com.bod.repository;
 
 import com.bod.repository.specifications.SQLSpecification;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class CoefsRepository implements EntityRepository, UpdateQuery {
-    private int id;
-    private double forMen, forWomen;
-
-    public CoefsRepository(int id, double forMen, double forWomen) {
-        this.id = id;
-        this.forMen = forMen;
-        this.forWomen = forWomen;
-    }
 
     @Override
-    public void createEntity() throws SQLException {
-        Statement createStatement = NutritionConnection.connection.createStatement();
+    public void createEntity(Object... args) throws SQLException {
+        PreparedStatement createStatement = NutritionConnection.getConnection()
+                .prepareStatement("INSERT INTO coefs VALUES(?, ?, ?)");
 
-        createStatement.execute(String.format("INSERT INTO coefs VALUES(%d, %f, %f)",
-                id, forMen, forWomen));
+        createStatement.setInt(1, (Integer) args[0]);
+        createStatement.setDouble(1, (Double) args[1]);
+        createStatement.setDouble(1, (Double) args[2]);
+
+        createStatement.execute();
 
         createStatement.close();
     }
 
     @Override
-    public ResultSet readEntity() throws SQLException {
-        Statement readStatement = NutritionConnection.connection.createStatement();
-        return readStatement.executeQuery("SELECT * FROM coefs");
+    public ResultSet readEntity(int id) throws SQLException {
+        PreparedStatement readStatement = NutritionConnection.getConnection().prepareStatement("SELECT * FROM coefs WHERE id = ?");
+        readStatement.setInt(1, id);
+        return readStatement.executeQuery();
     }
 
     @Override
-    public void deleteEntity() throws SQLException {
-        Statement deleteStatement = NutritionConnection.connection.createStatement();
-        deleteStatement.execute("DELETE FROM coefs WHERE id=%d", id);
+    public void deleteEntity(int id) throws SQLException {
+        PreparedStatement deleteStatement = NutritionConnection.getConnection().prepareStatement("DELETE FROM coefs WHERE id=?");
+        deleteStatement.setInt(1, id);
+        deleteStatement.execute();
         deleteStatement.close();
     }
 
     @Override
     public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificUpdateStatement = NutritionConnection.connection.createStatement();
+        Statement specificUpdateStatement = NutritionConnection.getConnection().createStatement();
 
-        return specificUpdateStatement.executeUpdate(sqlSpecification.toSqlClauses());
+        return sqlSpecification.toSqlClauses().executeUpdate();
     }
 }

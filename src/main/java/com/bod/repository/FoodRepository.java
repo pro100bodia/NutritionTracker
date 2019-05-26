@@ -1,6 +1,5 @@
 package com.bod.repository;
 
-import com.bod.entity.Food;
 import com.bod.repository.specifications.SQLSpecification;
 
 import java.sql.PreparedStatement;
@@ -9,23 +8,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class FoodRepository implements EntityRepository, UpdateQuery {
-    private Food foodUnit;
-
-    public FoodRepository(Food foodUnit) {
-        this.foodUnit = foodUnit;
-    }
-
     @Override
-    public void createEntity() throws SQLException {
-        PreparedStatement insertFoodUnit = NutritionConnection.connection
+    public void createEntity(Object... args) throws SQLException {
+        PreparedStatement insertFoodUnit = NutritionConnection.getConnection()
                 .prepareStatement("INSERT INTO food VALUES(NULL, ?, ?, ?, ?, ?, ?)");
 
-        insertFoodUnit.setString(1, foodUnit.getName());
-        insertFoodUnit.setInt(2, foodUnit.getNumber());
-        insertFoodUnit.setDouble(3, foodUnit.getCalories());
-        insertFoodUnit.setDouble(4, foodUnit.getProtein());
-        insertFoodUnit.setDouble(5, foodUnit.getFat());
-        insertFoodUnit.setDouble(6, foodUnit.getCarbohydrates());
+        insertFoodUnit.setString(1, (String) args[0]);
+        insertFoodUnit.setInt(2, (Integer) args[1]);
+        insertFoodUnit.setDouble(3, (Double) args[2]);
+        insertFoodUnit.setDouble(4, (Double) args[3]);
+        insertFoodUnit.setDouble(5, (Double) args[4]);
+        insertFoodUnit.setDouble(6, (Double) args[5]);
 
         insertFoodUnit.execute();
 
@@ -34,8 +27,8 @@ public class FoodRepository implements EntityRepository, UpdateQuery {
     }
 
     @Override
-    public ResultSet readEntity() throws SQLException {
-        Statement readStatement = NutritionConnection.connection.createStatement();
+    public ResultSet readEntity(int id) throws SQLException {
+        Statement readStatement = NutritionConnection.getConnection().createStatement();
 
         ResultSet foodUnitsResultSet = readStatement.executeQuery("SELECT * FROM food");
         readStatement.close();
@@ -43,11 +36,11 @@ public class FoodRepository implements EntityRepository, UpdateQuery {
     }
 
     @Override
-    public void deleteEntity() throws SQLException {
-        PreparedStatement deleteStatement = NutritionConnection.connection
+    public void deleteEntity(int id) throws SQLException {
+        PreparedStatement deleteStatement = NutritionConnection.getConnection()
                 .prepareStatement("DELETE FROM food WHERE id = ?");
 
-        deleteStatement.setInt(1, foodUnit.getId());
+        deleteStatement.setInt(1, id);
         deleteStatement.execute();
 
         deleteStatement.close();
@@ -55,9 +48,9 @@ public class FoodRepository implements EntityRepository, UpdateQuery {
 
     @Override
     public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement updateStatement = NutritionConnection.connection.createStatement();
+        Statement updateStatement = NutritionConnection.getConnection().createStatement();
 
-        int result = updateStatement.executeUpdate(sqlSpecification.toSqlClauses());
+        int result = sqlSpecification.toSqlClauses().executeUpdate();
 
         updateStatement.close();
 
