@@ -9,10 +9,21 @@
         <servlet-name>ErrorServlet</servlet-name>
         <servlet-class>com.bod.servlets.ErrorServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientServlet</servlet-name>
+        <servlet-class>com.bod.servlets.ClientServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>ErrorServlet</servlet-name>
         <url-pattern>/error</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ClientServlet</servlet-name>
+        <url-pattern>/client_page</url-pattern>
+    </servlet-mapping>
+
 
     <filter>
         <filter-name>LocalizationFilter</filter-name>
