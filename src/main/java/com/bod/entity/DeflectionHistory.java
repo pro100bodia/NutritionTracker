@@ -3,7 +3,7 @@ package com.bod.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class DeflectionHistory {
+public class DeflectionHistory implements Databaseable {
     private int id;
     private NutritiveValue value;
     private LocalDate date;

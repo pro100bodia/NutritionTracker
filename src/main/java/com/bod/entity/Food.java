@@ -2,7 +2,7 @@ package com.bod.entity;
 
 import java.util.Objects;
 
-public class Food {
+public class Food implements Databaseable {
     private int id;
     private String name;
     private int number;

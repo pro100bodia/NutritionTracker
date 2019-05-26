@@ -1,33 +1,20 @@
 package com.bod.repository;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
+import java.sql.*;
 
 public class DeflectionHistoryRepository implements EntityRepository {
-    private int id;
-    private int clientId;
-    private LocalDate date;
-    private double calories;
-    private double proteins;
-    private double fats;
-    private double carbohydrates;
-
-
     @Override
-    public void createEntity() throws SQLException {
-        PreparedStatement createPreparedStatement = NutritionConnection.connection
+    public void createEntity(Object... args) throws SQLException {
+        PreparedStatement createPreparedStatement = NutritionConnection.getConnection()
                 .prepareStatement("INSERT INTO deflection_history" +
                         " VALUES(NULL, ?, ?, ?, ?, ?, ?)");
 
-        createPreparedStatement.setInt(1, clientId);
-        createPreparedStatement.setDate(2, java.sql.Date.valueOf(date));
-        createPreparedStatement.setDouble(3, calories);
-        createPreparedStatement.setDouble(4, proteins);
-        createPreparedStatement.setDouble(5, fats);
-        createPreparedStatement.setDouble(6, carbohydrates);
+        createPreparedStatement.setInt(1, (Integer) args[0]);
+        createPreparedStatement.setDate(2, (Date) args[1]);
+        createPreparedStatement.setDouble(3, (Double) args[2]);
+        createPreparedStatement.setDouble(4, (Double) args[3]);
+        createPreparedStatement.setDouble(5, (Double) args[4]);
+        createPreparedStatement.setDouble(6, (Double) args[5]);
 
         createPreparedStatement.execute();
 
@@ -35,46 +22,20 @@ public class DeflectionHistoryRepository implements EntityRepository {
     }
 
     @Override
-    public ResultSet readEntity() throws SQLException {
-        Statement readStatement = NutritionConnection.connection.createStatement();
+    public ResultSet readEntity(int id) throws SQLException {
+        Statement readStatement = NutritionConnection.getConnection().createStatement();
 
         return readStatement.executeQuery(String.format("SELECT * FROM food_history WHERE id=%d", id));
     }
 
     @Override
-    public void deleteEntity() throws SQLException {
-        Statement deleteStatement = NutritionConnection.connection.createStatement();
+    public void deleteEntity(int id) throws SQLException {
+        PreparedStatement deleteStatement = NutritionConnection.getConnection()
+                .prepareStatement("DELETE FROM food_history WHERE id=?");
 
-        deleteStatement.execute("DELETE FROM food_history WHERE id=%d", id);
+        deleteStatement.setInt(1, id);
+        deleteStatement.execute();
 
         deleteStatement.close();
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setCalories(double calories) {
-        this.calories = calories;
-    }
-
-    public void setProteins(double proteins) {
-        this.proteins = proteins;
-    }
-
-    public void setFats(double fats) {
-        this.fats = fats;
-    }
-
-    public void setCarbohydrates(double carbohydrates) {
-        this.carbohydrates = carbohydrates;
     }
 }

@@ -10,12 +10,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class NutritionConnection {
-    static Connection connection;
+public final class NutritionConnection {
+    private static Connection connection;
 
     private static BasicDataSource ds = new BasicDataSource();
 
-    private static final Logger LOG = Logger.getLogger(NutritionConnection.class);
+    private static Logger LOG = Logger.getLogger(NutritionConnection.class);
 
     static {
         try (InputStream input = NutritionConnection.class.getClassLoader().getResourceAsStream("db_connection.properties")) {

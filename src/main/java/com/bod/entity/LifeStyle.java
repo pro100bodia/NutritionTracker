@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Properties;
 
-public enum LifeStyle {
+public enum LifeStyle implements Databaseable {
     M,
     A,
     I,
