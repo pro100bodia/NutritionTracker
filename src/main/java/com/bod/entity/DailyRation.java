@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DailyRation {
+    private int id;
     private List<Food> foodList;
     private NutritiveValue eaten;
 
@@ -14,6 +15,10 @@ public class DailyRation {
 
     public void addFood(Food food) {
         foodList.add(food);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public List<Food> getFoodList() {

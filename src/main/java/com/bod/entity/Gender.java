@@ -1,5 +1,5 @@
 package com.bod.entity;
 
-public enum GenderEnum {
+public enum Gender {
     M, F
 }

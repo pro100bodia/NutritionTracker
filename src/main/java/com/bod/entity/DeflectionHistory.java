@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class DeflectionHistory {
+    private int id;
     private NutritiveValue value;
     private LocalDate date;
 
@@ -18,6 +19,10 @@ public class DeflectionHistory {
 
     public void setValue(NutritiveValue value) {
         this.value = value;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public LocalDate getDate() {
