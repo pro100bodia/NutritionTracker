@@ -16,13 +16,6 @@ public class DailyRation {
         foodList.add(food);
     }
 
-    public void accumulateEaten() {
-
-        for (Food f : foodList) {
-            eaten = eaten.add(f.getValue());
-        }
-    }
-
     public List<Food> getFoodList() {
         return foodList;
     }
