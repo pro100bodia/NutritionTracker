@@ -10,7 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public final class NutritionConnection {
+public class NutritionConnection {
     private static Connection connection;
 
     private static BasicDataSource ds = new BasicDataSource();
@@ -18,8 +18,9 @@ public final class NutritionConnection {
     private static Logger LOG = Logger.getLogger(NutritionConnection.class);
 
     static {
-        try (InputStream input = NutritionConnection.class.getClassLoader().getResourceAsStream("db_connection.properties")) {
+        try (InputStream input = NutritionConnection.class.getResourceAsStream("db_connection.properties")) {
             Properties jdbcProps = new Properties();
+
 
             jdbcProps.load(input);
             LOG.info("Read JDBC properties successfully");

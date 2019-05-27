@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int clientId = (Integer) req.getAttribute("client_id");
+        int clientId = Integer.parseInt(req.getParameter("client_id"));
 
         Command command = new GenerateClientData(clientId);
         String url = command.execute(req);
