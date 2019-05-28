@@ -2,6 +2,14 @@ CREATE DATABASE nutrition CHARSET utf8;
 
 USE nutrition;
 
+SELECT * FROM clients;
+
+UPDATE clients SET img="../img/avatars/alexandra.jpg" WHERE id=5;
+UPDATE clients SET img="../img/avatars/dima.jpg" WHERE id=4;
+UPDATE clients SET img="../img/avatars/nick.jpg" WHERE id=3;
+UPDATE clients SET img="../img/avatars/sasha.jpg" WHERE id=2;
+UPDATE clients SET img="../img/avatars/bohdan.jpg" WHERE id=1;
+
 CREATE TABLE coefs(
 	value TINYINT PRIMARY KEY,
     men   DOUBLE      NOT NULL,
@@ -46,7 +54,6 @@ INSERT INTO food VALUES
     (NULL, 'bird-cherry', 100, 50, 1.1, 0.4, 11.5),
     (NULL, 'cherry', 100, 52, 0.8, 0.5, 11.3),
     (NULL, 'pear', 100, 42, 0.4, 0.3, 10.9);
-
 
 CREATE TABLE clients(
 	id INT AUTO_INCREMENT PRIMARY KEY,

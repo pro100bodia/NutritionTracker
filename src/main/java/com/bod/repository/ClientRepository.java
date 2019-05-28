@@ -27,7 +27,7 @@ public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuer
     @Override
     public ResultSet readEntity(int id) throws SQLException {
         PreparedStatement readStatement = NutritionConnection.getConnection()
-                .prepareStatement("SELECT img, name, birthdate, gender, height, weight, lifestyle FROM clients WHERE id=?");
+                .prepareStatement("SELECT img, name, date_of_birth, gender, height, weight, lifestyle FROM clients WHERE id=?");
 
         readStatement.setInt(1, id);
 

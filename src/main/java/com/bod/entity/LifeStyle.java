@@ -6,10 +6,10 @@ import java.util.Properties;
 
 public enum LifeStyle {
     M,
+    L,
     A,
-    I,
     H,
-    U;
+    E;
 
     private static final String PATH = "/amrConstants.properties";
 

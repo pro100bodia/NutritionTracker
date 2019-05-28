@@ -48,6 +48,7 @@ public class NutritionConnection {
         } catch (SQLException e) {
             LOG.fatal("Could not connect to database server", e);
             e.printStackTrace();
+            System.exit(1);
         }
 
         return conn;

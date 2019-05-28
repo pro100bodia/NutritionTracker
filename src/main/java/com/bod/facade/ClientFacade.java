@@ -53,14 +53,14 @@ public class ClientFacade {
         switch (lifeStyle) {
             case M:
                 return "Minimal";
+            case L:
+                return "Lite";
             case A:
                 return "Average";
-            case I:
-                return "Intensive";
             case H:
                 return "Hard";
-            case U:
-                return "Ultimate";
+            case E:
+                return "Extreme";
             default:
                 return "Minimal";
         }
