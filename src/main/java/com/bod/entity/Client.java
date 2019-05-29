@@ -16,6 +16,7 @@ public class Client {
     private double weight;
     private LifeStyle lifeStyle;
     private NutritiveValue norm;
+    private Role role;
 
     public NutritiveValue getNorm() {
         return norm;
@@ -124,5 +125,13 @@ public class Client {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(String string) {
+        this.role = Role.valueOf(string);
     }
 }

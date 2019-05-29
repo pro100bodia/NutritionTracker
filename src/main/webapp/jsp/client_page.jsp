@@ -1,11 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
-
 <%@ include file="jspf/header.jspf" %>
 <%@ include file="jspf/menu.jspf" %>
 
+<fmt: key="lifeStyle" message var="lifeStyle"/>
 
 <!-- Client Data -->
 <div class="container" id="client-data">
@@ -34,6 +30,9 @@
         </div>
         <div class="col-sm-4">
             <a href="">watch deflection charts</a>
+            <form action="${pageContext.request.contextPath}/logout" method="post">
+                <input type="submit" value="Log Out">
+            </form>
         </div>
     </div>
 </div>
@@ -53,17 +52,22 @@
             </select>
         </div>
         <div class="col-sm-4">
-            <button class="btn btn-default">Add Custom</button>
+            <button class="btn btn-default">
+                <fmt: key="add_custom" message/>
+            </button>
         </div>
         <div class="col-sm-4">
-            amount: <input min="1" type="number" value="1">
+            <fmt: key="amount" message/>
+            <input min="1" type="number" value="1">
         </div>
     </form>
 </div>
 <!-- End Add Food Form -->
 
 <!-- Client`s plate -->
-<h3>Your plate:</h3><br>
+<h3>
+    <fmt: key="your_plate" message/>
+</h3><br>
 <table class="plate-table">
     <tr>
         <td>name-1</td>

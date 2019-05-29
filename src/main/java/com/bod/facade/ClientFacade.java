@@ -10,16 +10,9 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class ClientFacade {
-    private int id;
-    private ClientService clientService;
-
-    public ClientFacade(int id) {
-        this.id = id;
-        clientService = new ClientService(id);
-    }
-
-    public ClientDTO getData() {
-        Client client = clientService.getRawData();
+    public ClientDTO getData(int id) {
+        ClientService clientService = new ClientService();
+        Client client = clientService.getRawData(id);
 
         ClientDTO clientDTO = new ClientDTO();
 

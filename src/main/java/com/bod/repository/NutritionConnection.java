@@ -11,8 +11,6 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class NutritionConnection {
-    private static Connection connection;
-
     private static BasicDataSource ds = new BasicDataSource();
 
     private static Logger LOG = Logger.getLogger(NutritionConnection.class);

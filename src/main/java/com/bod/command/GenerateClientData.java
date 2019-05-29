@@ -6,17 +6,11 @@ import com.bod.facade.ClientFacade;
 import javax.servlet.http.HttpServletRequest;
 
 public class GenerateClientData implements Command {
-    int id;
-
-    public GenerateClientData(int id) {
-        this.id = id;
-    }
-
     @Override
-    public String execute(HttpServletRequest req) {
-        ClientFacade clientFacade = new ClientFacade(id);
+    public String execute(HttpServletRequest req, int id) {
+        ClientFacade clientFacade = new ClientFacade();
 
-        ClientDTO client = clientFacade.getData();
+        ClientDTO client = clientFacade.getData(id);
 
         req.setAttribute("image", client.getImg());
         req.setAttribute("name", client.getName());

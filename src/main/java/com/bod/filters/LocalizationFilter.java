@@ -7,7 +7,6 @@ public class LocalizationFilter implements Filter {
     private static final String BUNDLE = "bundle";
     private static final String LOCALE = "locale";
     private String bundle;
-    private String locale;
     private String defaultLocale;
 
 
@@ -21,6 +20,7 @@ public class LocalizationFilter implements Filter {
     public void doFilter(ServletRequest servletRequest,
                          ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
+        String locale;
         locale = (String) servletRequest.getAttribute(LOCALE);
 
         if (locale == null)
