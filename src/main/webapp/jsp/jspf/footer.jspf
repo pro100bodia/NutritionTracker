@@ -1,6 +1,5 @@
 <footer>
-    <%@ include file="menu.jspf" %><br>
-    Bohdan Pukhalskyi
+    Made by: Bohdan Pukhalskyi
 </footer>
 </body>
 </html>
