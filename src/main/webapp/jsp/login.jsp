@@ -2,7 +2,7 @@
 
 <form action="${pageContext.request.contextPath}/login" method="post">
     <p>
-        <c:out value="${error.message}"></c:out>
+        <fmt: message key="" />
     </p>
     <input name="userName" placeholder='<fmt: message key="user"/>' type="text">
     <input name="password" placeholder='<fmt: message key="password"/>' type="password">
