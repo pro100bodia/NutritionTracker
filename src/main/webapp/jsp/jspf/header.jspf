@@ -26,13 +26,7 @@
     <script crossorigin="anonymous" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
-        function asyncChangeLocale(){
-            $(window).onload(function(){
-                $.get(${pageContext.request.contextPath} + "?locale=" + $(#lang-select).val());
-            });
-        }
-    </script>
+    <script type="text/javascript" src="../../js/changeLocale.js"></script>
 </head>
 <body>
 <header>
@@ -40,7 +34,7 @@
         <div class="row">
             <div class="col-sm-8">Nutrition Tracker</div>
             <div class="col-sm-4">
-                <select id="lang-select" name="locale" onchange="asyncChangeLocale()">
+                <select id="lang-select" name="locale" onchange="changeLocale(this.value)">
                     <option value="en">english</option>
                     <option value="uk">ukrainian</option>
                     <option value="ru">russian</option>
