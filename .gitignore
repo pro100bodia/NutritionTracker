@@ -1,4 +1,5 @@
 /.idea
 src/main/webapp/WEB-INF/classes/
-NutritionTraking.iml
+*.iml
 /target/
+/logs/

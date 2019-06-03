@@ -2,11 +2,11 @@ package com.bod.entity;
 
 import java.time.LocalDate;
 
-public class Client implements Databaseable {
+public class Client {
     private int id;
     private String name;
     private String password;
-    private String image;
+    private String img;
     private String email;
     private DailyRation dailyRation;
     private DeflectionHistory deflectionHistory;
@@ -16,11 +16,7 @@ public class Client implements Databaseable {
     private double weight;
     private LifeStyle lifeStyle;
     private NutritiveValue norm;
-
-    public Client(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
+    private Role role;
 
     public NutritiveValue getNorm() {
         return norm;
@@ -114,13 +110,6 @@ public class Client implements Databaseable {
         this.lifeStyle = lifeStyle;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public String getEmail() {
         return email;
@@ -128,5 +117,21 @@ public class Client implements Databaseable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(String string) {
+        this.role = Role.valueOf(string);
     }
 }

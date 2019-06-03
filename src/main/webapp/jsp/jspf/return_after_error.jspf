@@ -1,0 +1,6 @@
+<h3>Move To</h3>
+<ul>
+    <li class="inlined"><a href="index.jsp">Home Page</a></li>
+    <li class="inlined"><a href="client_page">Personal Cab</a></li>
+    <li class="inlined"><a href="login">Log in</a></li>
+</ul>

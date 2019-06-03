@@ -1,0 +1,13 @@
+body > *{
+    padding-bottom: 20px;
+    display: block;
+}
+
+.inlined{
+    display: inline;
+    padding-right: 40px;
+}
+
+.plate-table td{
+    padding-right: 40px;
+}

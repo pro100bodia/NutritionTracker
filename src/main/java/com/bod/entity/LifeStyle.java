@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import java.util.Properties;
 
-public enum LifeStyle implements Databaseable {
+public enum LifeStyleEnum {
     M,
     A,
     I,
@@ -13,7 +13,7 @@ public enum LifeStyle implements Databaseable {
 
     private static final String PATH = "/amrConstants.properties";
 
-    private static final Logger LOG = Logger.getLogger(LifeStyle.class);
+    private static final Logger LOG = Logger.getLogger(LifeStyleEnum.class);
 
     private static Properties properties;
 
@@ -23,7 +23,7 @@ public enum LifeStyle implements Databaseable {
         if (properties == null) {
             properties = new Properties();
             try {
-                properties.load(LifeStyle.class.getResourceAsStream(PATH));
+                properties.load(LifeStyleEnum.class.getResourceAsStream(PATH));
                 LOG.info("Load LifeStyle properties successfully");
             } catch (Exception e) {
                 LOG.fatal("Unable to load " + PATH + " file from classpath.", e);

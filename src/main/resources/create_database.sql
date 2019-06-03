@@ -47,11 +47,11 @@ INSERT INTO food VALUES
     (NULL, 'cherry', 100, 52, 0.8, 0.5, 11.3),
     (NULL, 'pear', 100, 42, 0.4, 0.3, 10.9);
 
-
 CREATE TABLE clients(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     password VARCHAR(30) NOT NULL,
+    `role` ENUM('C', 'D') NOT NULL,
     date_of_birth DATE NOT NULL,
     gender ENUM('M', 'F') NOT NULL,
     height FLOAT NOT NULL,
@@ -60,11 +60,17 @@ CREATE TABLE clients(
 );
 
 INSERT INTO clients VALUES
-	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbench', '2000-5-17', 'M', 165.9, 66.6, 'L'),
-	(NULL, 'Sasha', '$n`t2ch', '2000-8-24', 'M', 178.9, 60.6, 'L'),
-	(NULL, 'Nick', 'lukin4you', '2000-9-12', 'M', 180.0, 68.8, 'E'),
-	(NULL, 'Dima', 'ooo|vosmiklasssnica|', '2000-9-21', 'M', 185.5, 64.3, 'M'),
-	(NULL, 'Alexandra', '158,962,555,217,826,360,000', '2000-9-21', 'F', 185.5, 64.3, 'H');
+	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbench', 'C', '../img/avatars/bohdan.jpg', '2000-5-17', 'M', 165.9, 66.6, 'L'),
+	(NULL, 'Sasha', '$n`t2ch', '../img/avatars/sasha.jpg', '2000-8-24', 'M', 178.9, 60.6, 'L'),
+	(NULL, 'Nick', 'lukin4you', '../img/avatars/nick.jpg', '2000-9-12', 'M', 180.0, 68.8, 'E'),
+	(NULL, 'Dima', 'ooo|vosmiklasssnica|', '../img/avatars/dima.jpg', '2000-9-21', 'M', 185.5, 64.3, 'M'),
+	(NULL, 'Alexandra', '158,962,555,217,826,360,000', '../img/avatars/alexandra.jpg', '2000-9-21', 'F', 185.5, 64.3, 'H');
+
+INSERT INTO clients(name, password, role, email)
+   	VALUES('Dr.House', 'URshipskinEd', 'D', 'house@mail.to');
+
+INSERT INTO clients(name, password, role, email)
+    VALUES('John H. Watson', '1111', 'D', 'watsons@mail.to');
 
 
 CREATE TABLE deflection_history(
