@@ -33,6 +33,8 @@ public class LoginServlet extends HttpServlet {
         if (loginedClient == null) {
             req.setAttribute("error.message", "User not found");
             loginDispatcher.forward(req, resp);
+        }else{
+
         }
 
         //store data in the session
