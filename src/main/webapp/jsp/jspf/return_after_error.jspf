@@ -1,6 +1,6 @@
-<h3>Move To</h3>
+<h3><fmt:message key="moveto.message" /></h3>
 <ul>
-    <li class="inlined"><a href="index.jsp">Home Page</a></li>
-    <li class="inlined"><a href="client_page">Personal Cab</a></li>
-    <li class="inlined"><a href="login">Log in</a></li>
+    <li class="inlined"><a href="index.jsp"><fmt:message key="moveto.home_page" /></a></li>
+    <li class="inlined"><a href="client_page"><fmt:message key="moveto.personal_cab" /></a></li>
+    <li class="inlined"><a href="login"><fmt:message key="moveto.log_in" /></a></li>
 </ul>

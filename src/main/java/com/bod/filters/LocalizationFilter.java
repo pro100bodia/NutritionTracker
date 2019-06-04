@@ -3,6 +3,7 @@ package com.bod.filters;
 import org.apache.log4j.Logger;
 
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
@@ -25,8 +26,17 @@ public class LocalizationFilter implements Filter {
                          ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-        String locale = (String) req.getParameter(LOCALE);
+        Cookie[] cookie = req.getCookies();
+
+        String locale = null, cookieName;
+        for(Cookie ck: cookie){
+            cookieName = ck.getName();
+            if(cookieName.equals(LOCALE))
+            locale = ck.getValue();
+        }
+
         LOG.info("Locale choose to " + locale);
+
         if (locale == null)
             locale = defaultLocale;
 

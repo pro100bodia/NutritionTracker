@@ -30,7 +30,6 @@ public class SecurityFilter implements Filter {
             return;
         }
 
-
         if (loginedUser != null) {
             String userName = loginedUser.getName();
             String userRole = loginedUser.getRole().name();
@@ -38,14 +37,12 @@ public class SecurityFilter implements Filter {
         }
 
         if (SecurityUtils.isSecurityPage(req)) {
-            boolean hasPermission = SecurityUtils.hasPermission(req);//or wrapRequest
+            boolean hasPermission = SecurityUtils.hasPermission(req);
             if (!hasPermission) {
-
-                RequestDispatcher dispatcher //
+                RequestDispatcher dispatcher
                         = req.getServletContext().getRequestDispatcher("/WEB-INF/views/accessDeniedView.jsp");
 
                 dispatcher.forward(req, resp);
-                return;
             }
         }
     }

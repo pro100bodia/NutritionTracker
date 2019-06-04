@@ -21,9 +21,6 @@ function getCookie(cname) {
   return "";
 }
 
-if(window.location != window.location.origin + "/?locale=" + getCookie("locale"))
-    window.location = window.location.origin + "/?locale=" + getCookie("locale");
-
 $(document).ready(function(){
     $("#lang-select").val(getCookie("locale"));
 });
@@ -31,5 +28,7 @@ $(document).ready(function(){
 
 function changeLocale(val){
     setCookie("locale", val, 365);
-    window.location = window.location.origin + "/?locale=" + val;
+    console.log(window.location);
+    var location = window.location;
+    window.location = location.origin + location.pathname + "?locale=" + val;
 }

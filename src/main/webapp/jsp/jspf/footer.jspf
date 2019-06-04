@@ -1,5 +1,5 @@
 <footer>
-    Made by: Bohdan Pukhalskyi
+    <fmt:message key="footer.madeby" />: Bohdan Pukhalskyi
 </footer>
 </body>
 </html>
