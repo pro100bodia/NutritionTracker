@@ -37,6 +37,7 @@ public class LocalizationFilter implements Filter {
 
         LOG.info("Locale choose to " + locale);
 
+        //fixme create cookie if abscent
         if (locale == null)
             locale = defaultLocale;
 
