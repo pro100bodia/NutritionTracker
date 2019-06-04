@@ -30,5 +30,5 @@ function changeLocale(val){
     setCookie("locale", val, 365);
     console.log(window.location);
     var location = window.location;
-    window.location = location.origin + location.pathname + "?locale=" + val;
+    window.location = location.origin + location.pathname;
 }
