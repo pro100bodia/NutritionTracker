@@ -48,11 +48,7 @@ public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuer
 
     @Override
     public ResultSet specificReadQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificReadStatement = NutritionConnection.getConnection().createStatement();
-
         return sqlSpecification.toSqlClauses().executeQuery();
-
-
     }
 
     @Override

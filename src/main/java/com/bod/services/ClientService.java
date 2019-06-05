@@ -13,25 +13,25 @@ public class ClientService {
     public Client getLoginData(String username, String password) {
         ClientRepository clientRepository = new ClientRepository();
 
-        Client client = new Client();
+        Client client = null;
 
         try {
             ResultSet clientRes = clientRepository.specificReadQuery(
                     new ClientReadLoginDataSpecification(username, password));
 
             while (clientRes.next()) {
+                client = new Client();
                 client.setId(clientRes.getInt(1));
                 client.setName(clientRes.getString(2));
                 client.setPassword(clientRes.getString(3));
                 client.setRole(clientRes.getString(4));
             }
 
-            return client;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return client;
     }
 
     public Client getRawData(int id) {

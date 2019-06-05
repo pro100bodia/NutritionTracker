@@ -23,18 +23,18 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        loginDispatcher = req.getRequestDispatcher("/jsp/login.jsp");
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
 
         //get client from database
         Client loginedClient = new ClientService().getLoginData(userName, password);
-
         //if not found forward error message
         if (loginedClient == null) {
-            req.setAttribute("error.message", "User not found");
+            req.setAttribute("error_login_message", "Wrong username or password");
+//            System.out.println(req.getAttribute("error_login_message"));
             loginDispatcher.forward(req, resp);
-        }else{
-
+            return;
         }
 
         //store data in the session
