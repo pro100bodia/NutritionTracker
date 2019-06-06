@@ -23,15 +23,15 @@ public class SecurityFilter implements Filter {
 
         Client loginedUser = AppUtils.getClientFromSession(req);
 
-        String servletPath = req.getServletPath();
+//        String servletPath = req.getServletPath();
 
-        if (servletPath.equals("/login")) {
-            filterChain.doFilter(req, resp);
-            return;
-        }
+//        if (servletPath.equals("/login")) {
+//            filterChain.doFilter(req, resp);
+//            return;
+//        }
 
         if (loginedUser != null) {
-            String userName = loginedUser.getName();
+//            String userName = loginedUser.getName();
             String userRole = loginedUser.getRole().name();
 
         }
@@ -40,7 +40,7 @@ public class SecurityFilter implements Filter {
             boolean hasPermission = SecurityUtils.hasPermission(req);
             if (!hasPermission) {
                 RequestDispatcher dispatcher
-                        = req.getServletContext().getRequestDispatcher("/WEB-INF/views/accessDeniedView.jsp");
+                        = req.getServletContext().getRequestDispatcher("/jsp/errors/403.jsp");
 
                 dispatcher.forward(req, resp);
             }

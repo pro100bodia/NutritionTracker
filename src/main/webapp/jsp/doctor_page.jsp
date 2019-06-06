@@ -5,9 +5,12 @@
         <c:out value="${name}"/>
     </p>
 </div>
+<form action="${pageContext.request.contextPath}/logout" method="post">
+    <input type="submit" value="Log Out">
+</form>
 
 <p>
-    <fmt: key="coef_table" message/>
+    <fmt:message key="coef_table"/>
 </p>
 <table>
     <c:forEach items="coefs" var="coef">
@@ -27,28 +30,28 @@
 
 <table>
     <c:forEach items="foodList" var="food">
-        <</tr>>
-        <td>
-            <c:out value="food.name"/>
-        </td>
-        <td>
-            <c:out value="food.calories"/>
-        </td>
-        <td>
-            <c:out value="food.protein"/>
-        </td>
-        <td>
-            <c:out value="food.fats"/>
-        </td>
-        <td>
-            <c:out value="food.carbohydrates"/>
-        </td>
-        <td>
-            <c:out value="food.number"/>
-        </td>
+        <tr>
+            <td>
+                <c:out value="food.name"/>
+            </td>
+            <td>
+                <c:out value="food.calories"/>
+            </td>
+            <td>
+                <c:out value="food.protein"/>
+            </td>
+            <td>
+                <c:out value="food.fats"/>
+            </td>
+            <td>
+                <c:out value="food.carbohydrates"/>
+            </td>
+            <td>
+                <c:out value="food.number"/>
+            </td>
         </tr>
 
     </c:forEach>
 </table>
 
-<%@ include file="footer.jspf" %>
+<%@ include file="jspf/footer.jspf"%>

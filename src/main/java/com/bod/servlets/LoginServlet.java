@@ -17,6 +17,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.removeAttribute("error_login_message");
         loginDispatcher = req.getRequestDispatcher("jsp/login.jsp");
         loginDispatcher.forward(req, resp);
     }
@@ -32,23 +33,24 @@ public class LoginServlet extends HttpServlet {
         //if not found forward error message
         if (loginedClient == null) {
             req.setAttribute("error_login_message", "Wrong username or password");
-//            System.out.println(req.getAttribute("error_login_message"));
             loginDispatcher.forward(req, resp);
             return;
+        } else {
+            req.removeAttribute("error_login_message");
         }
 
         //store data in the session
         AppUtils.storeClientInSession(req, loginedClient);
 
         //do redirect
-        RequestDispatcher pageDispathcer;
+        String redirectTo;
 
         Role role = loginedClient.getRole();
         if (role.name().equals("C")) {
-            pageDispathcer = req.getRequestDispatcher("jsp/client_page.jsp");
+            redirectTo = "jsp/client_page.jsp";
         } else {
-            pageDispathcer = req.getRequestDispatcher("jsp/doctor_page.jsp");
+            redirectTo = "jsp/doctor_page.jsp";
         }
-        pageDispathcer.forward(req, resp);
+        resp.sendRedirect(redirectTo);
     }
 }

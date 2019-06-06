@@ -1,6 +1,7 @@
 package com.bod.utils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Set;
 
 public class SecurityUtils {
@@ -10,7 +11,7 @@ public class SecurityUtils {
         Set<String> roles = SecurityConfig.getAllAppRoles();
 
         for (String role : roles) {
-            String urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
+            List<String> urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
             if (urlPatterns != null && urlPatterns.contains(urlPattern)) {
                 return true;
             }
@@ -27,7 +28,7 @@ public class SecurityUtils {
             if (!request.isUserInRole(role)) {
                 continue;
             }
-            String urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
+            List<String> urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
             if (urlPatterns != null && urlPatterns.contains(urlPattern)) {
                 return true;
             }

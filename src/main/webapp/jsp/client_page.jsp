@@ -1,14 +1,11 @@
 <%@ include file="jspf/header.jspf" %>
 <%@ include file="jspf/menu.jspf" %>
 
-<fmt: key="lifeStyle" message var="lifeStyle"/>
-
 <!-- Client Data -->
 <div class="container" id="client-data">
     <div class="row">
         <div class="col-sm-3"><img src='<c:out value="${image}" default="../img/avatar/default.png" />'/></div>
         <div class="col-sm-5">
-
             <div class="row">
                 <div class="col-sm-9">
                     <list>
@@ -26,7 +23,6 @@
                     </button>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-4">
             <a href="">watch deflection charts</a>
@@ -53,11 +49,11 @@
         </div>
         <div class="col-sm-4">
             <button class="btn btn-default">
-                <fmt: key="add_custom" message/>
+                <fmt:message key="add_custom"/>
             </button>
         </div>
         <div class="col-sm-4">
-            <fmt: key="amount" message/>
+            <fmt:message key="amount"/>
             <input min="1" type="number" value="1">
         </div>
     </form>
@@ -66,7 +62,7 @@
 
 <!-- Client`s plate -->
 <h3>
-    <fmt: key="your_plate" message/>
+    <fmt:message key="your_plate"/>
 </h3><br>
 <table class="plate-table">
     <tr>
