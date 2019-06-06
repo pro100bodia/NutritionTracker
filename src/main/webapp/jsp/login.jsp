@@ -15,12 +15,9 @@
 
 <form action="${pageContext.request.contextPath}/login" method="post">
     <p>
-        <c:catch var="exception">
-            <i style="color: red;">
-                <c:out value="${error_login_message}"/>
-            </i>
-            <fmt:message key="error.login" var="error_login_message"/>
-        </c:catch>
+        <i style="color: red;">
+            <fmt:message key="${error_message}"/>
+        </i>
     </p>
 
     <input name="userName" placeholder='<fmt:message key="login.user"/>' type="text">
