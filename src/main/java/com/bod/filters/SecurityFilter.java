@@ -23,12 +23,13 @@ public class SecurityFilter implements Filter {
 
         Client loginedUser = AppUtils.getClientFromSession(req);
 
-//        String servletPath = req.getServletPath();
+        String servletPath = req.getServletPath();
+        System.out.println(servletPath);
 
-//        if (servletPath.equals("/login")) {
-//            filterChain.doFilter(req, resp);
-//            return;
-//        }
+        if (servletPath.equals("/login") || servletPath.equals("/index.jsp")) {
+            filterChain.doFilter(req, resp);
+            return;
+        }
 
         if (loginedUser != null) {
 //            String userName = loginedUser.getName();
@@ -39,10 +40,11 @@ public class SecurityFilter implements Filter {
         if (SecurityUtils.isSecurityPage(req)) {
             boolean hasPermission = SecurityUtils.hasPermission(req);
             if (!hasPermission) {
-                RequestDispatcher dispatcher
-                        = req.getServletContext().getRequestDispatcher("/jsp/errors/403.jsp");
+//                RequestDispatcher dispatcher
+//                        = req.getServletContext().getRequestDispatcher("/nutrition_tracker/jsp/errors/403.jsp");
 
-                dispatcher.forward(req, resp);
+//                dispatcher.forward(req, resp);
+                resp.setStatus(403);
             }
         }
     }
