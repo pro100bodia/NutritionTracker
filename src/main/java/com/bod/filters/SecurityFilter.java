@@ -36,18 +36,15 @@ public class SecurityFilter implements Filter {
             if (client != null) {
                 boolean hasPermission = SecurityUtils.hasPermission(req);
                 if (!hasPermission) {
-                    throwAccessDeniedError(req, resp);
+                    throwAccessDeniedError(resp);
                 } else {
-                    LOG.info("Passing the request");
-                    filterChain.doFilter(req, resp);
+                    continueProcessing(req, resp, filterChain);
                 }
             } else {
-                System.out.println("Client is null");
-                throwAccessDeniedError(req, resp);
+                throwAccessDeniedError(resp);
             }
         } else {
-            LOG.info("Passing the request");
-            filterChain.doFilter(req, resp);
+            continueProcessing(req, resp, filterChain);
         }
 
     }
@@ -57,8 +54,15 @@ public class SecurityFilter implements Filter {
 
     }
 
-    private void throwAccessDeniedError(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void throwAccessDeniedError(HttpServletResponse resp) throws ServletException, IOException {
         LOG.error("Access denied");
-        resp.sendRedirect("/nutrition_tracker/jsp/errors/403.jsp");
+        resp.sendError(403);
+    }
+
+    private void continueProcessing(HttpServletRequest req,
+                                    HttpServletResponse resp, FilterChain filterChain)
+            throws IOException, ServletException {
+        LOG.info("Passing the request");
+        filterChain.doFilter(req, resp);
     }
 }
