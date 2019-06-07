@@ -1,5 +1,7 @@
 package com.bod.utils;
 
+import com.bod.entity.Client;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Set;
@@ -19,17 +21,15 @@ public class SecurityUtils {
         return false;
     }
 
-    public static boolean hasPermission(HttpServletRequest request) {
-        String urlPattern = UrlPatternUtils.getUrlPattern(request);
+    public static boolean hasPermission(HttpServletRequest req) {
+        String urlPattern = UrlPatternUtils.getUrlPattern(req);
 
-        Set<String> allRoles = SecurityConfig.getAllAppRoles();
+        Client client = AppUtils.getClientFromSession(req);
+        String role = client.getRole().name();
 
-        for (String role : allRoles) {
-            if (!request.isUserInRole(role)) {
-                continue;
-            }
-            List<String> urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
-            if (urlPatterns != null && urlPatterns.contains(urlPattern)) {
+        List<String> patternsList = SecurityConfig.getUrlPatternsForRole(role);
+        for (String roleUrlPattern : patternsList) {
+            if (roleUrlPattern.equals(urlPattern)) {
                 return true;
             }
         }

@@ -3,6 +3,7 @@ package com.bod.filters;
 import com.bod.entity.Client;
 import com.bod.utils.AppUtils;
 import com.bod.utils.SecurityUtils;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SecurityFilter implements Filter {
+    private static Logger LOG = Logger.getLogger(SecurityFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -21,36 +23,42 @@ public class SecurityFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-        Client loginedUser = AppUtils.getClientFromSession(req);
-
-        String servletPath = req.getServletPath();
-        System.out.println(servletPath);
-
-        if (servletPath.equals("/login") || servletPath.equals("/index.jsp")) {
-            filterChain.doFilter(req, resp);
-            return;
-        }
-
-        if (loginedUser != null) {
-//            String userName = loginedUser.getName();
-            String userRole = loginedUser.getRole().name();
-
-        }
-
         if (SecurityUtils.isSecurityPage(req)) {
-            boolean hasPermission = SecurityUtils.hasPermission(req);
-            if (!hasPermission) {
-//                RequestDispatcher dispatcher
-//                        = req.getServletContext().getRequestDispatcher("/nutrition_tracker/jsp/errors/403.jsp");
+            LOG.info("Loading security page");
 
-//                dispatcher.forward(req, resp);
-                resp.setStatus(403);
+            Client client;
+            try {
+                client = AppUtils.getClientFromSession(req);
+            } catch (NullPointerException e) {
+                client = null;
             }
+
+            if (client != null) {
+                boolean hasPermission = SecurityUtils.hasPermission(req);
+                if (!hasPermission) {
+                    throwAccessDeniedError(req, resp);
+                } else {
+                    LOG.info("Passing the request");
+                    filterChain.doFilter(req, resp);
+                }
+            } else {
+                System.out.println("Client is null");
+                throwAccessDeniedError(req, resp);
+            }
+        } else {
+            LOG.info("Passing the request");
+            filterChain.doFilter(req, resp);
         }
+
     }
 
     @Override
     public void destroy() {
 
+    }
+
+    private void throwAccessDeniedError(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LOG.error("Access denied");
+        resp.sendRedirect("/nutrition_tracker/jsp/errors/403.jsp");
     }
 }
