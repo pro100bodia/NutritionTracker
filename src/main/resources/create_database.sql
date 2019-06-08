@@ -60,7 +60,7 @@ CREATE TABLE clients(
 );
 
 INSERT INTO clients VALUES
-	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbench', 'C', '../img/avatars/bohdan.jpg', '2000-5-17', 'M', 165.9, 66.6, 'L'),
+	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbenc', 'C', '../img/avatars/bohdan.jpg', '2000-5-17', 'M', 165.9, 66.6, 'L'),
 	(NULL, 'Sasha', '$n`t2ch', '../img/avatars/sasha.jpg', '2000-8-24', 'M', 178.9, 60.6, 'L'),
 	(NULL, 'Nick', 'lukin4you', '../img/avatars/nick.jpg', '2000-9-12', 'M', 180.0, 68.8, 'E'),
 	(NULL, 'Dima', 'ooo|vosmiklasssnica|', '../img/avatars/dima.jpg', '2000-9-21', 'M', 185.5, 64.3, 'M'),

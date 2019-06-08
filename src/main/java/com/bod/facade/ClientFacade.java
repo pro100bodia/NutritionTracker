@@ -44,8 +44,6 @@ public class ClientFacade {
 
     private String identifyLifeStyle(LifeStyle lifeStyle) {
         switch (lifeStyle) {
-            case M:
-                return "Minimal";
             case L:
                 return "Lite";
             case A:

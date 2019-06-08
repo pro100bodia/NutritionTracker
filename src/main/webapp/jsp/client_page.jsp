@@ -9,23 +9,39 @@
             <div class="row">
                 <div class="col-sm-9">
                     <list>
-                        <li><input id="personal-param-1" type="text" value='<c:out value="${name}" />'/></li>
-                        <li><input id="personal-param-2" type="text" value='<c:out value="${age}" />'/></li>
-                        <li><input id="personal-param-3" type="text" value='<c:out value="${gender}" />'/></li>
-                        <li><input id="personal-param-4" type="text" value='<c:out value="${height}" />'/></li>
-                        <li><input id="personal-param-5" type="text" value='<c:out value="${weight}" />'/></li>
-                        <li><input id="personal-param-6" type="text" value='<c:out value="${lifeStyle}" />'/></li>
+                        <li><input id="personal-param-1" type="text"
+                                   value='<fmt:message key="client.name" />:  <c:out value="${name}" />'/></li>
+                        <li><input id="personal-param-2" type="text"
+                                   value='<fmt:message key="client.age" />:  <c:out value="${age}" />'/></li>
+                        <li><input id="personal-param-3" type="text"
+                                   value='<fmt:message key="client.gender" />:  <c:out value="${gender}" />'/></li>
+                        <li><input id="personal-param-4" type="text"
+                                   value='<fmt:message key="client.height" />:  <c:out value="${height}" />'/></li>
+                        <li><input id="personal-param-5" type="text"
+                                   value='<fmt:message key="client.weight" />:  <c:out value="${weight}" />'/></li>
+                        <li><input id="personal-param-6" type="text"
+                                   value='<fmt:message key="client.lifestyle" />:  <c:out value="${lifeStyle}" />'/>
+                        </li>
                     </list>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-default" type="button">
+                    <button class="btn btn-default" onclick="enableInput()" type="button">
                         <span class="glyphicon glyphicon-cog"></span>
                     </button>
                 </div>
             </div>
         </div>
         <div class="col-sm-4">
-            <a href="">watch deflection charts</a>
+            <a href="#calc">
+                <fmt:message key="menu.calc"/>
+            </a><br>
+            <a href="#charts">
+                <fmt:message key="menu.custom_food"/>
+            </a><br>
+            <a href="concrete_plate.jsp">
+                <fmt:message key="menu.concrete_plate"/>
+            </a>
+
             <form action="${pageContext.request.contextPath}/logout" method="post">
                 <input type="submit" value="Log Out">
             </form>

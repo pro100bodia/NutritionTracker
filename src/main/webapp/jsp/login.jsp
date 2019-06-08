@@ -2,17 +2,6 @@
 <%@ page import="java.util.Enumeration"%>
 <%@ page import = "java.util.Enumeration" %>
 
-<pre>
-<%
-    Enumeration names = request.getAttributeNames();
-    while(names.hasMoreElements()){
-        String name = (String) names.nextElement();
-        String value = (String) request.getAttribute(name);
-        out.println(name + ": " + value);
-    }
-%>
-</pre>
-
 <form action="${pageContext.request.contextPath}/login" method="post">
     <p>
         <i style="color: red;">

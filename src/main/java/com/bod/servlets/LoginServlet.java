@@ -52,11 +52,11 @@ public class LoginServlet extends HttpServlet {
 
         Role role = loginedClient.getRole();
         if (role.name().equals("C")) {
-            redirectTo = "jsp/client_page.jsp";
-            LOG.info("Client redirected to jsp/client_page.jsp");
+            redirectTo = "/nutrition_tracker/client_page";
+            LOG.info("Client redirected to client_page");
         } else {
-            redirectTo = "jsp/doctor_page.jsp";
-            LOG.info("Client redirected to jsp/doctor_page.jsp");
+            redirectTo = "/nutrition_tracker/doctor_page";
+            LOG.info("Client redirected doctor_page");
         }
         resp.sendRedirect(redirectTo);
     }

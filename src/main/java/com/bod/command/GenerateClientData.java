@@ -20,6 +20,7 @@ public class GenerateClientData implements Command {
         req.setAttribute("weight", client.getWeight());
         req.setAttribute("lifeStyle", client.getLifeStyle());
 
+        //todo change according to role
         return "jsp/client_page.jsp";
     }
 }
