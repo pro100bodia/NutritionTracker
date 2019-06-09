@@ -30,9 +30,7 @@ public class FoodRepository implements EntityRepository {
     public ResultSet readEntity(int id) throws SQLException {
         Statement readStatement = NutritionConnection.getConnection().createStatement();
 
-        ResultSet foodUnitsResultSet = readStatement.executeQuery("SELECT * FROM food");
-        readStatement.close();
-        return foodUnitsResultSet;
+        return readStatement.executeQuery("SELECT * FROM food");
     }
 
     @Override

@@ -18,8 +18,13 @@
                                    type="text" value='<fmt:message key="client.age" />:  <c:out value="${age}" />'/>
                         </li>
                         <li><input disabled id="gender"
+                                   type="hidden"
+                                   value=<c:out value="${gender}"/>'/>
+                        </li>
+                        <li><input disabled id="gender_out"
                                    type="text"
-                                   value='<fmt:message key="client.gender" />:  <c:out value="${gender}" />'/></li>
+                                   value='<fmt:message key="client.gender" />:  <fmt:message key="client.gender.${gender}" />'/>
+                        </li>
                         <li><input disabled id="height"
                                    type="text"
                                    value='<fmt:message key="client.height" />:  <c:out value="${height}" />'/></li>
@@ -64,21 +69,28 @@
 <div class="container" id="add-food-form">
     <form action="">
         <div class="col-sm-4">
-            <select id="" name="">
+            <select id="" name="food_selection">
                 c:forEach="foodList" value="food"
-                <option>choose your food</option>
-                <option>c: out food</option>
-                <option>c: out food</option>
-                <option>c: out food</option>
+                <option val="null">
+                    <fmt:message key="food.empty"/>
+                </option>
+                <c:forEach items="${foodList}" var="food">
+                    <option value="${food.id}">
+                        <c:out value="${food.name}"/>
+                    </option>
+                </c:forEach>
             </select>
         </div>
         <div class="col-sm-4">
             <button class="btn btn-default">
-                <fmt:message key="add_custom"/>
+                <fmt:message key="food.add_custom"/>
+            </button>
+            <button class="btn btn-default" onclick="addToPlate(food_selection.value)">
+                <fmt:message key="food.add"/>
             </button>
         </div>
         <div class="col-sm-4">
-            <fmt:message key="amount"/>
+            <fmt:message key="food.amount"/>
             <input min="1" type="number" value="1">
         </div>
     </form>
@@ -86,10 +98,46 @@
 <!-- End Add Food Form -->
 
 <!-- Client`s plate -->
-<h3>
-    <fmt:message key="your_plate"/>
-</h3><br>
+<div class="column">
+    <div class="row">
+        <div class="col-sm-3">
+            <h3>
+                <fmt:message key="food.your_plate"/>
+            </h3>
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-3">
+            <form action="">
+                <input type="submit" value='<fmt:message key="menu.calc" />'>
+            </form>
+        </div>
+    </div>
+</div>
+
 <table class="plate-table">
+    <thead>
+    <td>
+        <fmt:message key="food.name"/>
+    </td>
+    <td>
+        <fmt:message key="food.calories"/>
+    </td>
+    <td>
+        <fmt:message key="food.proteins"/>
+    </td>
+    <td>
+        <fmt:message key="food.fats"/>
+    </td>
+    <td>
+        <fmt:message key="food.carbohydrates"/>
+    </td>
+    <td>
+        <fmt:message key="food.number"/>
+    </td>
+    <td>
+        <fmt:message key="food.amount"/>
+    </td>
+    </thead>
     <tr>
         <td>name-1</td>
         <td>calories-1</td>

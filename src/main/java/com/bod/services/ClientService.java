@@ -68,7 +68,7 @@ public class ClientService {
             int rows = clientRepository.updateEntity(data);
             LOG.info("Client #" + data.getId() + " updated successfully");
         } catch (SQLException e) {
-            LOG.error("Failde to update client #" + data.getId());
+            LOG.error("Failde to update client #" + data.getId() + "\n" + e);
             e.printStackTrace();
         }
 

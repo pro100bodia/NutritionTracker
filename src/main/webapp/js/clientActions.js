@@ -40,3 +40,7 @@ function enableInput(val){
         setData(val);
     }
 }
+
+function addToPlate(val){
+
+}
