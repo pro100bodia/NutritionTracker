@@ -1,5 +1,7 @@
 package com.bod.repository;
 
+import com.bod.entity.Databaseable;
+
 import java.sql.*;
 
 public class FoodHistoryRepository implements EntityRepository {
@@ -38,5 +40,10 @@ public class FoodHistoryRepository implements EntityRepository {
         readStatement.execute();
 
         readStatement.close();
+    }
+
+    @Override
+    public int updateEntity(Databaseable entity) throws SQLException {
+        return 0;
     }
 }

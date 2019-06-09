@@ -1,5 +1,7 @@
 package com.bod.repository;
 
+import com.bod.entity.Databaseable;
+
 import java.sql.*;
 
 public class DeflectionHistoryRepository implements EntityRepository {
@@ -37,5 +39,10 @@ public class DeflectionHistoryRepository implements EntityRepository {
         deleteStatement.execute();
 
         deleteStatement.close();
+    }
+
+    @Override
+    public int updateEntity(Databaseable entity) throws SQLException {
+        return 0;
     }
 }

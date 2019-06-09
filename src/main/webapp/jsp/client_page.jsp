@@ -4,28 +4,37 @@
 <!-- Client Data -->
 <div class="container" id="client-data">
     <div class="row">
-        <div class="col-sm-3"><img src='<c:out value="${image}" default="../img/avatar/default.png" />'/></div>
+        <div class="col-sm-3"><img
+                src='<c:out value="${image}" default="/nutrition_tracker/img/avatars/default.png" />'/></div>
         <div class="col-sm-5">
             <div class="row">
                 <div class="col-sm-9">
-                    <list>
-                        <li><input id="personal-param-1" type="text"
-                                   value='<fmt:message key="client.name" />:  <c:out value="${name}" />'/></li>
-                        <li><input id="personal-param-2" type="text"
-                                   value='<fmt:message key="client.age" />:  <c:out value="${age}" />'/></li>
-                        <li><input id="personal-param-3" type="text"
+                    <list class="personal_data">
+                        <li><input id="client_id" name="id" type="hidden" value='<c:out value="${id}" />'></li>
+                        <li><input disabled id="name"
+                                   type="text" value='<fmt:message key="client.name" />:  <c:out value="${name}" />'/>
+                        </li>
+                        <li><input disabled id="age"
+                                   type="text" value='<fmt:message key="client.age" />:  <c:out value="${age}" />'/>
+                        </li>
+                        <li><input disabled id="gender"
+                                   type="text"
                                    value='<fmt:message key="client.gender" />:  <c:out value="${gender}" />'/></li>
-                        <li><input id="personal-param-4" type="text"
+                        <li><input disabled id="height"
+                                   type="text"
                                    value='<fmt:message key="client.height" />:  <c:out value="${height}" />'/></li>
-                        <li><input id="personal-param-5" type="text"
+                        <li><input disabled id="weight"
+                                   type="text"
                                    value='<fmt:message key="client.weight" />:  <c:out value="${weight}" />'/></li>
-                        <li><input id="personal-param-6" type="text"
+                        <li><input disabled id="lifeStyle"
+                                   type="text"
                                    value='<fmt:message key="client.lifestyle" />:  <c:out value="${lifeStyle}" />'/>
                         </li>
                     </list>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-default" onclick="enableInput()" type="button">
+                    <button class="btn btn-default" id="config_personal_data"
+                            onclick="enableInput('${requestScope['javax.servlet.forward.request_uri']}')" type="button">
                         <span class="glyphicon glyphicon-cog"></span>
                     </button>
                 </div>

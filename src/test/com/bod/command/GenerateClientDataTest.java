@@ -25,7 +25,7 @@ public class GenerateClientDataTest {
 
     @Test
     public void shouldReturnTrueUrl() {
-        String testUrl = generateClientData.execute(req, id);
+        String testUrl = generateClientData.execute(req);
         assertEquals(url, testUrl);
     }
 }

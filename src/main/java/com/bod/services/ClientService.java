@@ -5,11 +5,14 @@ import com.bod.entity.Gender;
 import com.bod.entity.LifeStyle;
 import com.bod.repository.ClientRepository;
 import com.bod.repository.specifications.ClientReadLoginDataSpecification;
+import org.apache.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClientService {
+    private static final Logger LOG = Logger.getLogger(ClientService.class);
+
     public Client getLoginData(String username, String password) {
         ClientRepository clientRepository = new ClientRepository();
 
@@ -40,7 +43,6 @@ public class ClientService {
 
         try {
             ResultSet clientRes = clientRepository.readEntity(id);
-
             while (clientRes.next()) {
                 client.setImg(clientRes.getString(1));
                 client.setName(clientRes.getString(2));
@@ -57,5 +59,19 @@ public class ClientService {
         }
 
         return null;
+    }
+
+    public int updateClientData(Client data) {
+        ClientRepository clientRepository = new ClientRepository();
+
+        try {
+            int rows = clientRepository.updateEntity(data);
+            LOG.info("Client #" + data.getId() + " updated successfully");
+        } catch (SQLException e) {
+            LOG.error("Failde to update client #" + data.getId());
+            e.printStackTrace();
+        }
+
+        return 0;
     }
 }

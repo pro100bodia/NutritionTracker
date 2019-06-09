@@ -1,13 +1,12 @@
 package com.bod.repository;
 
-import com.bod.repository.specifications.SQLSpecification;
+import com.bod.entity.Databaseable;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class CoefsRepository implements EntityRepository, UpdateQuery {
+public class CoefsRepository implements EntityRepository {
 
     @Override
     public void createEntity(Object... args) throws SQLException {
@@ -39,9 +38,7 @@ public class CoefsRepository implements EntityRepository, UpdateQuery {
     }
 
     @Override
-    public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificUpdateStatement = NutritionConnection.getConnection().createStatement();
-
-        return sqlSpecification.toSqlClauses().executeUpdate();
+    public int updateEntity(Databaseable entity) throws SQLException {
+        return 0;
     }
 }

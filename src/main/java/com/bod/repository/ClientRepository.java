@@ -1,10 +1,15 @@
 package com.bod.repository;
 
+import com.bod.entity.Client;
+import com.bod.entity.Databaseable;
 import com.bod.repository.specifications.SQLSpecification;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuery {
+public class ClientRepository implements EntityRepository, ReadQuery {
     @Override
     public void createEntity(Object... args) throws SQLException {
         PreparedStatement createStatement = NutritionConnection.getConnection()
@@ -52,13 +57,21 @@ public class ClientRepository implements EntityRepository, UpdateQuery, ReadQuer
     }
 
     @Override
-    public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificUpdateStatement = NutritionConnection.getConnection().createStatement();
+    public int updateEntity(Databaseable entity) throws SQLException {
+        Client client = (Client) entity;
 
-        int result = sqlSpecification.toSqlClauses().executeUpdate();
+        PreparedStatement updateStatement = NutritionConnection.getConnection()
+                .prepareStatement("UPDATE clients SET name=?, gender=?, " +
+                        "height=?, weight=?, lifestyle=?, img=? WHERE id=?");
 
-        specificUpdateStatement.close();
+        updateStatement.setString(1, client.getName());
+        updateStatement.setString(2, client.getGender().name());
+        updateStatement.setDouble(3, client.getHeight());
+        updateStatement.setDouble(4, client.getWeight());
+        updateStatement.setString(5, client.getLifeStyle().name());
+        updateStatement.setString(6, client.getImg());
+        updateStatement.setInt(7, client.getId());
 
-        return result;
+        return updateStatement.executeUpdate();
     }
 }
