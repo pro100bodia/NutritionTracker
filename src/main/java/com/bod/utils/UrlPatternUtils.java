@@ -10,6 +10,10 @@ class UrlPatternUtils {
             return servletPath.substring(servletPath.lastIndexOf("/"),
                     servletPath.indexOf("?"));
         }
+        if (servletPath.contains("#")) {
+            return servletPath.substring(servletPath.lastIndexOf("/"),
+                    servletPath.indexOf("#"));
+        }
 
         return servletPath.substring(servletPath.lastIndexOf("/"));
     }

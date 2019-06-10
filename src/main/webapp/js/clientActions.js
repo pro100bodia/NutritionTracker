@@ -41,6 +41,13 @@ function enableInput(val){
     }
 }
 
-function addToPlate(val){
-
+function addToPlate(food, amount){
+    alert("Invoking addToPlate metod");
+    $.post(
+        "/nutrition_tracker/fill_plate",
+        [food, amount],
+        function(result){
+            console.log("Adding food to plate");
+        }
+    );
 }

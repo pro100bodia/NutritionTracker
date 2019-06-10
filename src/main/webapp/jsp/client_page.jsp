@@ -85,13 +85,13 @@
             <button class="btn btn-default">
                 <fmt:message key="food.add_custom"/>
             </button>
-            <button class="btn btn-default" onclick="addToPlate(food_selection.value)">
+            <button class="btn btn-default" onclick="addToPlate(food_selection.value, food_amount.value)">
                 <fmt:message key="food.add"/>
             </button>
         </div>
         <div class="col-sm-4">
             <fmt:message key="food.amount"/>
-            <input min="1" type="number" value="1">
+            <input min="1" name="food_amount" type="number" value="1">
         </div>
     </form>
 </div>
@@ -138,34 +138,37 @@
         <fmt:message key="food.amount"/>
     </td>
     </thead>
-    <tr>
-        <td>name-1</td>
-        <td>calories-1</td>
-        <td>proteins-1</td>
-        <td>fats-1</td>
-        <td>carbohydrates-1</td>
-        <td>number-1</td>
-        <td>amount-1</td>
-    </tr>
-    <tr>
-        <td>name-2</td>
-        <td>calories-2</td>
-        <td>proteins-2</td>
-        <td>fats-2</td>
-        <td>carbohydrates-2</td>
-        <td>number-2</td>
-        <td>amount-2</td>
-    </tr>
-    <tr>
-        <td>name-3</td>
-        <td>calories-3</td>
-        <td>proteins-3</td>
-        <td>fats-3</td>
-        <td>carbohydrates-3</td>
-        <td>number-3</td>
-        <td>amount-3</td>
-    </tr>
+    <c:forEach items="${plate}" var="food">
+        <tr>
+            <td>
+                <c:out value="food.name"/>
+            </td>
+            <td>
+                <c:out value="food.calories"/>
+            </td>
+            <td>
+                <c:out value="food.proteins"/>
+            </td>
+            <td>
+                <c:out value="food.fats"/>
+            </td>
+            <td>
+                <c:out value="food.carbohydrates"/>
+            </td>
+            <td>
+                <c:out value="food.number"/>
+            </td>
+            <td>
+                <c:out value="food.amount"/>
+            </td>
+        </tr>
+    </c:forEach>
+
 </table>
 <!-- End Client`s plate -->
+
+<!-- Deflection charts -->
+<div id="charts" style="height: 50px; border: 1px solid red;"></div>
+<!-- End deflection charts -->
 
 <%@ include file="jspf/footer.jspf" %>

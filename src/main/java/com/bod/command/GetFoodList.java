@@ -11,7 +11,6 @@ public class GetFoodList implements Command {
     public String execute(HttpServletRequest req) {
         FoodService foodService = new FoodService();
         List<Food> foodList = foodService.getFoodLIst();
-//        System.out.println("foodList: " + foodList);
         req.setAttribute("foodList", foodList);
 
         return "jsp/client_page.jsp";

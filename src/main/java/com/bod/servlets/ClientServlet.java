@@ -1,6 +1,9 @@
 package com.bod.servlets;
 
-import com.bod.command.*;
+import com.bod.command.Command;
+import com.bod.command.GenerateClientData;
+import com.bod.command.GetFoodList;
+import com.bod.command.UpdateClientData;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -28,9 +31,6 @@ public class ClientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         command = new UpdateClientData();
         String url = command.execute(req);
-
-        command = new FillPlate();
-        command.execute(req);
 
         req.getRequestDispatcher(url).forward(req, resp);
     }

@@ -1,9 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-        http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+  http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <display-name>Nutrition Tracker|Calculate your nutrition norm</display-name>
+    <servlet>
+        <servlet-name>ConcreteDayPlateServlet</servlet-name>
+        <servlet-class>com.bod.servlets.ConcreteDayPlateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConcreteDayPlateServlet</servlet-name>
+        <url-pattern>/concrete_day_plate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CustomFoodServlet</servlet-name>
+        <servlet-class>com.bod.servlets.CustomFoodServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CustomFoodServlet</servlet-name>
+        <url-pattern>/custom_food</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>PlateServlet</servlet-name>
+        <servlet-class>com.bod.servlets.PlateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PlateServlet</servlet-name>
+        <url-pattern>/fill_plate</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>ClientServlet</servlet-name>
