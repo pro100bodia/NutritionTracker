@@ -1,7 +1,5 @@
 package com.bod.repository;
 
-import com.bod.entity.Databaseable;
-
 import java.sql.*;
 
 public class FoodHistoryRepository implements EntityRepository {
@@ -43,7 +41,7 @@ public class FoodHistoryRepository implements EntityRepository {
     }
 
     @Override
-    public int updateEntity(Databaseable entity) throws SQLException {
+    public int updateEntity(Object... args) throws SQLException {
         return 0;
     }
 }

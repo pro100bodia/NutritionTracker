@@ -52,6 +52,7 @@ CREATE TABLE clients(
     name VARCHAR(30) NOT NULL,
     password VARCHAR(30) NOT NULL,
     `role` ENUM('C', 'D') NOT NULL,
+    img VARCHAR(50) NULL,
     date_of_birth DATE NOT NULL,
     gender ENUM('M', 'F') NOT NULL,
     height FLOAT NOT NULL,
@@ -60,18 +61,17 @@ CREATE TABLE clients(
 );
 
 INSERT INTO clients VALUES
-	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbenc', 'C', '/nutrition_tracker/img/avatars/bohdan.jpg', '2000-5-17', 'M', 165.9, 66.6, 'L'),
-	(NULL, 'Sasha', '$n`t2ch', '/nutrition_tracker/img/avatars/sasha.jpg', '2000-8-24', 'M', 178.9, 60.6, 'L'),
-	(NULL, 'Nick', 'lukin4you', '/nutrition_tracker/img/avatars/nick.jpg', '2000-9-12', 'M', 180.0, 68.8, 'E'),
-	(NULL, 'Dima', 'ooo|vosmiklasssnica|', '/nutrition_tracker/img/avatars/dima.jpg', '2000-9-21', 'M', 185.5, 64.3, 'M'),
-	(NULL, 'Alexandra', '158,962,555,217,826,360,000', '/nutrition_tracker/img/avatars/alexandra.jpg', '2000-9-21', 'F', 185.5, 64.3, 'H');
+	(NULL, 'Bohdan', 'sudo apt-install mysqlworkbenc', 'C', '/nutrition_tracker/img/avatars/bohdan.png', '2000-5-17', 'M', 165.9, 66.6, 'L'),
+	(NULL, 'Sasha', '$n`t2ch', 'C', '/nutrition_tracker/img/avatars/sasha.png', '2000-8-24', 'M', 178.9, 60.6, 'L'),
+	(NULL, 'Nick', 'lukin4you', 'C', '/nutrition_tracker/img/avatars/nick.jpg', '2000-9-12', 'M', 180.0, 68.8, 'E'),
+	(NULL, 'Dima', 'ooo|vosmiklasssnica|', 'C', '/nutrition_tracker/img/avatars/dima.jpg', '2000-9-21', 'M', 185.5, 64.3, 'M'),
+	(NULL, 'Alexandra', '158,962,555,217,826,360,000', 'C', '/nutrition_tracker/img/avatars/alexandra.jpg', '2000-9-21', 'F', 185.5, 64.3, 'H'),
+    (NULL, 'not sample name', 'not sample password', 'C', 'sample_img', '1970-1-1', 'M', 111.0, 66.6, 'M');
 
-INSERT INTO clients(name, password, role, email)
-   	VALUES('Dr.House', 'URshipskinEd', 'D', 'house@mail.to');
-
-INSERT INTO clients(name, password, role, email)
-    VALUES('John H. Watson', '1111', 'D', 'watsons@mail.to');
-
+INSERT INTO clients(name, password, role) VALUES
+	('Dr.House', 'URshipskinEd', 'D'),
+	('John H. Watson', '1111', 'D');
+    
 
 CREATE TABLE deflection_history(
 	id INT AUTO_INCREMENT PRIMARY KEY,
@@ -83,7 +83,6 @@ CREATE TABLE deflection_history(
     carbohydrates FLOAT NOT NULL,
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
-
 
 CREATE TABLE food_history(
 	history_id INT AUTO_INCREMENT PRIMARY KEY,

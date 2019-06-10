@@ -1,7 +1,5 @@
 package com.bod.repository;
 
-import com.bod.entity.Databaseable;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +36,7 @@ public class CoefsRepository implements EntityRepository {
     }
 
     @Override
-    public int updateEntity(Databaseable entity) throws SQLException {
+    public int updateEntity(Object... args) throws SQLException {
         return 0;
     }
 }

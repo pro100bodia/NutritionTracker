@@ -1,7 +1,5 @@
 package com.bod.repository;
 
-import com.bod.entity.Client;
-import com.bod.entity.Databaseable;
 import com.bod.repository.specifications.SQLSpecification;
 
 import java.sql.Date;
@@ -57,20 +55,18 @@ public class ClientRepository implements EntityRepository, ReadQuery {
     }
 
     @Override
-    public int updateEntity(Databaseable entity) throws SQLException {
-        Client client = (Client) entity;
-
+    public int updateEntity(Object... args) throws SQLException {
         PreparedStatement updateStatement = NutritionConnection.getConnection()
                 .prepareStatement("UPDATE clients SET name=?, gender=?, " +
                         "height=?, weight=?, lifestyle=?, img=? WHERE id=?");
 
-        updateStatement.setString(1, client.getName());
-        updateStatement.setString(2, client.getGender().name());
-        updateStatement.setDouble(3, client.getHeight());
-        updateStatement.setDouble(4, client.getWeight());
-        updateStatement.setString(5, client.getLifeStyle().name());
-        updateStatement.setString(6, client.getImg());
-        updateStatement.setInt(7, client.getId());
+        updateStatement.setString(1, (String) args[0]);
+        updateStatement.setString(2, (String) args[1]);
+        updateStatement.setDouble(3, (Double) args[2]);
+        updateStatement.setDouble(4, (Double) args[3]);
+        updateStatement.setString(5, (String) args[4]);
+        updateStatement.setString(6, (String) args[5]);
+        updateStatement.setInt(7, (Integer) args[6]);
 
         return updateStatement.executeUpdate();
     }

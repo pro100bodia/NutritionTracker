@@ -1,6 +1,7 @@
 /.idea
-/src/main/webapp/WEB-INF/classes/
 *.iml
 /target/
 /logs/
 /src/main/webapp/jsp/interesting.jsp
+
+/logs/log_file.log

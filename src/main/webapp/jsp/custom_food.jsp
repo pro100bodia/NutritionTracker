@@ -5,14 +5,14 @@
     <fmt:message key="menu.custom_food"/>
 </h3>
 
-<form action="${pageContext.request.contextPath}/custom_food">
+<form action="${pageContext.request.contextPath}/custom_food" method="post">
     <list>
-        <li><input name="food_name" type="text">
+        <li><input name="food_name" required type="text">
             <fmt:message key="food.name"/>
             <label for="food_name"></label></li>
-        <li><input name="food_amount" type="text">
-            <fmt:message key="food.amount"/>
-            <label for="food_amount"></label></li>
+        <li><input name="food_number" required type="number">
+            <fmt:message key="food.number"/>
+            <label for="food_number"></label></li>
         <li><input name="food_calories" type="text">
             <fmt:message key="food.calories"/>
             <label for="food_calories"></label></li>

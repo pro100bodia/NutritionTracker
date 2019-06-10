@@ -61,14 +61,24 @@ public class ClientService {
         return null;
     }
 
-    public int updateClientData(Client data) {
+    public int updateClientData(Client client) {
         ClientRepository clientRepository = new ClientRepository();
+        Object[] args = new Object[7];
+
+        args[0] = client.getName();
+        args[1] = client.getGender();
+        args[2] = client.getHeight();
+        args[3] = client.getWeight();
+        args[4] = client.getLifeStyle();
+        args[5] = client.getImg();
+        args[6] = client.getId();
+
 
         try {
-            int rows = clientRepository.updateEntity(data);
-            LOG.info("Client #" + data.getId() + " updated successfully");
+            int rows = clientRepository.updateEntity(args);
+            LOG.info("Client #" + client.getId() + " updated successfully");
         } catch (SQLException e) {
-            LOG.error("Failde to update client #" + data.getId() + "\n" + e);
+            LOG.error("Failed to update client #" + client.getId() + "\n" + e);
             e.printStackTrace();
         }
 

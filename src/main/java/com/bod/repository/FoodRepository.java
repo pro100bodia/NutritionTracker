@@ -1,7 +1,5 @@
 package com.bod.repository;
 
-import com.bod.entity.Databaseable;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,7 +43,18 @@ public class FoodRepository implements EntityRepository {
     }
 
     @Override
-    public int updateEntity(Databaseable entity) throws SQLException {
-        return 0;
+    public int updateEntity(Object... args) throws SQLException {
+        PreparedStatement updateStatement = NutritionConnection.getConnection()
+                .prepareStatement("UPDATE food SET name=?, number=?, " +
+                        "calories=?, proteins=?, fats=?, carbohydrates=? WHERE id=?");
+        updateStatement.setString(1, (String) args[0]);
+        updateStatement.setString(2, (String) args[1]);
+        updateStatement.setString(3, (String) args[2]);
+        updateStatement.setString(4, (String) args[3]);
+        updateStatement.setString(5, (String) args[4]);
+        updateStatement.setString(6, (String) args[5]);
+        updateStatement.setString(7, (String) args[6]);
+
+        return updateStatement.executeUpdate();
     }
 }

@@ -1,8 +1,6 @@
 package com.bod.repository;
 
 
-import com.bod.entity.Databaseable;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -13,5 +11,5 @@ public interface EntityRepository {
 
     void deleteEntity(int id) throws SQLException;
 
-    int updateEntity(Databaseable entity) throws SQLException;
+    int updateEntity(Object... nums) throws SQLException;
 }

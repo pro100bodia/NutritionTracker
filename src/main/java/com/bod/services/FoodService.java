@@ -1,6 +1,7 @@
 package com.bod.services;
 
 import com.bod.entity.Food;
+import com.bod.repository.EntityRepository;
 import com.bod.repository.FoodRepository;
 import org.apache.log4j.Logger;
 
@@ -22,15 +23,6 @@ public class FoodService {
             foodList = new ArrayList<>();
             Food foodUnit;
             while (resultSet.next()) {
-//                System.out.println("First resultSet value: " + resultSet.getInt(1));
-//                System.out.println("First resultSet value: " + resultSet.getString(2));
-//                System.out.println("First resultSet value: " + resultSet.getInt(3));
-//                System.out.println("First resultSet value: " + resultSet.getInt(4));
-//                System.out.println("First resultSet value: " + resultSet.getDouble(5));
-//                System.out.println("First resultSet value: " + resultSet.getDouble(6));
-//                System.out.println("First resultSet value: " + resultSet.getInt(7));
-//                System.out.println("-----------------------------------");
-
                 foodUnit = new Food();
                 foodUnit.setId(resultSet.getInt(1));
                 foodUnit.setName(resultSet.getString(2));
@@ -47,5 +39,25 @@ public class FoodService {
             e.printStackTrace();
         }
         return foodList;
+    }
+
+    public void addFood(Food food) {
+        Object[] args = new Object[6];
+
+        args[0] = food.getName();
+        args[1] = food.getNumber();
+        args[2] = food.getCalories();
+        args[3] = food.getProtein();
+        args[4] = food.getFat();
+        args[5] = food.getCarbohydrates();
+
+        EntityRepository foodRepo = new FoodRepository();
+        try {
+            foodRepo.createEntity(args);
+            LOG.info("Created new food " + food.getName());
+        } catch (SQLException e) {
+            LOG.error("Fail to create new food " + food.getName() +
+                    " " + e);
+        }
     }
 }
