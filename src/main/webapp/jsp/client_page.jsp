@@ -49,11 +49,8 @@
             <a href="#calc">
                 <fmt:message key="menu.calc"/>
             </a><br>
-            <a href="#charts">
+            <a href="/nutrition_tracker/custom_food">
                 <fmt:message key="menu.custom_food"/>
-            </a><br>
-            <a href="concrete_plate.jsp">
-                <fmt:message key="menu.concrete_plate"/>
             </a>
 
             <form action="${pageContext.request.contextPath}/logout" method="post">
@@ -97,6 +94,7 @@
 <!-- End Add Food Form -->
 
 <!-- Client`s plate -->
+<a name="calc"></a>
 <div class="column">
     <div class="row">
         <div class="col-sm-3">
@@ -163,9 +161,5 @@
     </tr>
     </thead>
 </table>
-
-<!-- Deflection charts -->
-<div id="charts" style="height: 50px; border: 1px solid red;"></div>
-<!-- End deflection charts -->
 
 <%@ include file="jspf/footer.jspf" %>

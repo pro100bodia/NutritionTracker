@@ -5,7 +5,4 @@
     <li class="inlined"><a href="/nutrition_tracker/custom_food">
         <fmt:message key="menu.custom_food"/>
     </a></li>
-    <li class="inlined"><a href="/nutrition_tracker/concrete_day_plate">
-        <fmt:message key="menu.concrete_plate"/>
-    </a></li>
 </list>
