@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import javax.servlet.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LocalizationFilter implements Filter {
@@ -13,7 +12,7 @@ public class LocalizationFilter implements Filter {
     private static final String LOCALE = "locale";
     private static String defaultBundle;
     private static String defaultLocale;
-    private static final Logger LOG = Logger.getLogger(LocalizationFilter.class);
+    private static Logger LOG = Logger.getLogger(LocalizationFilter.class);
 
 
     @Override
@@ -27,7 +26,6 @@ public class LocalizationFilter implements Filter {
                          ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-        HttpServletResponse resp = (HttpServletResponse) servletResponse;
         Cookie[] cookie = req.getCookies();
 
         String locale = null, cookieName;
@@ -39,13 +37,8 @@ public class LocalizationFilter implements Filter {
 
         LOG.info("Locale choose to " + locale);
 
-        if (locale == null) {
+        if (locale == null)
             locale = defaultLocale;
-
-            Cookie localeCookie = new Cookie("locale", defaultLocale);
-            localeCookie.setMaxAge(365 * 24 * 60 * 60);//1 year
-            resp.addCookie(localeCookie);
-        }
 
         servletRequest.setAttribute(LOCALE, locale);
         servletRequest.setAttribute(BUNDLE, defaultBundle);
