@@ -57,7 +57,7 @@
             </a>
 
             <form action="${pageContext.request.contextPath}/logout" method="post">
-                <input type="submit" value="Log Out">
+                <input type="submit" value='<fmt:message key="login.logout" />'>
             </form>
         </div>
     </div>

@@ -6,6 +6,15 @@
          version="3.1">
     <display-name>Nutrition Tracker|Calculate your nutrition norm</display-name>
     <servlet>
+        <servlet-name>DoctorServlet</servlet-name>
+        <servlet-class>com.bod.servlets.DoctorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DoctorServlet</servlet-name>
+        <url-pattern>/doctor_page</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>NormServlet</servlet-name>
         <servlet-class>com.bod.servlets.NormServlet</servlet-class>
     </servlet>
