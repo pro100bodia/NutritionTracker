@@ -64,17 +64,12 @@ public class Food implements Databaseable {
         if (this == o) return true;
         if (!(o instanceof Food)) return false;
         Food food = (Food) o;
-        return getNumber() == food.getNumber() &&
-                Double.compare(food.getCalories(), getCalories()) == 0 &&
-                Double.compare(food.getProtein(), getProtein()) == 0 &&
-                Double.compare(food.getFat(), getFat()) == 0 &&
-                Double.compare(food.getCarbohydrates(), getCarbohydrates()) == 0 &&
-                getName().equals(food.getName());
+        return getId() == food.getId();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getNumber(), getCalories(), getProtein(), getFat(), getCarbohydrates());
+        return Objects.hash(getId());
     }
 
     public int getId() {

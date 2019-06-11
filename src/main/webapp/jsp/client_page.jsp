@@ -1,6 +1,6 @@
 <%@ include file="jspf/header.jspf" %>
 <%@ include file="jspf/menu.jspf" %>
-
+<script src="/nutrition_tracker/js/clientActions.js" type="text/javascript"></script>
 <!-- Client Data -->
 <div class="container" id="client-data">
     <div class="row">
@@ -19,7 +19,7 @@
                         </li>
                         <li><input disabled id="gender"
                                    type="hidden"
-                                   value=<c:out value="${gender}"/>'/>
+                                   value='<c:out value="${gender}"/>'/>
                         </li>
                         <li><input disabled id="gender_out"
                                    type="text"
@@ -67,10 +67,9 @@
 
 <!-- Add Food Form -->
 <div class="container" id="add-food-form">
-    <form action="">
+
         <div class="col-sm-4">
-            <select id="" name="food_selection">
-                c:forEach="foodList" value="food"
+            <select id="food_selection" name="food_selection">
                 <option val="null">
                     <fmt:message key="food.empty"/>
                 </option>
@@ -82,18 +81,18 @@
             </select>
         </div>
         <div class="col-sm-4">
-            <button class="btn btn-default">
+            <a href="/nutrition_tracker/custom_food">
                 <fmt:message key="food.add_custom"/>
-            </button>
+            </a>
             <button class="btn btn-default" onclick="addToPlate(food_selection.value, food_amount.value)">
                 <fmt:message key="food.add"/>
             </button>
         </div>
         <div class="col-sm-4">
             <fmt:message key="food.amount"/>
-            <input min="1" name="food_amount" type="number" value="1">
+            <input id="food_amount" min="1" name="food_amount" type="number" value="1">
         </div>
-    </form>
+
 </div>
 <!-- End Add Food Form -->
 
@@ -114,7 +113,7 @@
     </div>
 </div>
 
-<table class="plate-table">
+<table class="plate_table">
     <thead>
     <td>
         <fmt:message key="food.name"/>
@@ -138,31 +137,7 @@
         <fmt:message key="food.amount"/>
     </td>
     </thead>
-    <c:forEach items="${plate}" var="food">
-        <tr>
-            <td>
-                <c:out value="food.name"/>
-            </td>
-            <td>
-                <c:out value="food.calories"/>
-            </td>
-            <td>
-                <c:out value="food.proteins"/>
-            </td>
-            <td>
-                <c:out value="food.fats"/>
-            </td>
-            <td>
-                <c:out value="food.carbohydrates"/>
-            </td>
-            <td>
-                <c:out value="food.number"/>
-            </td>
-            <td>
-                <c:out value="food.amount"/>
-            </td>
-        </tr>
-    </c:forEach>
+
 
 </table>
 <!-- End Client`s plate -->

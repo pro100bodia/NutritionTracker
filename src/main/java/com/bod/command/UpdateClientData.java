@@ -13,14 +13,14 @@ public class UpdateClientData implements Command {
     public String execute(HttpServletRequest req) {
         ClientDTO clientDTO = new ClientDTO();
         clientDTO.setId(Integer.parseInt(req.getParameter("id")));
-        clientDTO.setName(req.getParameter("name"));
+        clientDTO.setName(req.getParameter("name").trim());
 
         LOG.info("updating information for: " + clientDTO.getName());
 
-        clientDTO.setGender(req.getParameter("gender"));
-        clientDTO.setHeight(Double.parseDouble(req.getParameter("height")));
-        clientDTO.setWeight(Double.parseDouble(req.getParameter("weight")));
-        clientDTO.setLifeStyle(req.getParameter("lifeStyle"));
+        clientDTO.setGender(req.getParameter("gender").trim());
+        clientDTO.setHeight(Double.parseDouble(req.getParameter("height").trim()));
+        clientDTO.setWeight(Double.parseDouble(req.getParameter("weight").trim()));
+        clientDTO.setLifeStyle(req.getParameter("lifeStyle").trim());
 
         ClientFacade updateFacade = new ClientFacade();
         updateFacade.updateClientData(clientDTO);

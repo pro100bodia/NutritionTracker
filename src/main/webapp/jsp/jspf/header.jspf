@@ -29,7 +29,6 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="/nutrition_tracker/js/changeLocale.js"></script>
-    <script src="/nutrition_tracker/js/clientActions.js" type="text/javascript"></script>
 </head>
 <body>
 <header>

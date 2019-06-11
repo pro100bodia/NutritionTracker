@@ -11,12 +11,12 @@ public class AddFood implements Command {
     public String execute(HttpServletRequest req) {
         FoodBuilder builder = new FoodBuilder();
         builder.reset();
-        builder.setName(req.getParameter("food_name"));
-        builder.setNumber((int) Double.parseDouble(req.getParameter("food_number")));
-        builder.setCalories(Double.parseDouble(req.getParameter("food_calories")));
-        builder.setProteins(Double.parseDouble(req.getParameter("food_proteins")));
-        builder.setFats(Double.parseDouble(req.getParameter("food_fats")));
-        builder.setCarbohydrates(Double.parseDouble(req.getParameter("food_carbohydrates")));
+        builder.setName(req.getParameter("food_name").trim());
+        builder.setNumber((int) Double.parseDouble(req.getParameter("food_number").trim()));
+        builder.setCalories(Double.parseDouble(req.getParameter("food_calories").trim()));
+        builder.setProteins(Double.parseDouble(req.getParameter("food_proteins").trim()));
+        builder.setFats(Double.parseDouble(req.getParameter("food_fats").trim()));
+        builder.setCarbohydrates(Double.parseDouble(req.getParameter("food_carbohydrates").trim()));
 
         Food food = builder.getResult();
 

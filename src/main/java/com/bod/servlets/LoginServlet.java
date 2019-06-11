@@ -28,8 +28,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         loginDispatcher = req.getRequestDispatcher("/jsp/login.jsp");
-        String userName = req.getParameter("userName");
-        String password = req.getParameter("password");
+        String userName = req.getParameter("userName").trim();
+        String password = req.getParameter("password").trim();
 
         //get client from database
         Client loginedClient = new ClientService().getLoginData(userName, password);

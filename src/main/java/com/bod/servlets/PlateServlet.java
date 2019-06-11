@@ -16,12 +16,11 @@ public class PlateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOG.debug("Performing post request: " + req.getAttributeNames());
-        LOG.debug("request parameters: " + req.getParameterNames());
-
         Command plateCommand = new FillPlate();
-        String url = plateCommand.execute(req);
 
-        req.getRequestDispatcher(url).forward(req, resp);
+        String result = plateCommand.execute(req);
+
+        resp.setContentType("text/html");
+        resp.getWriter().write(result);
     }
 }
