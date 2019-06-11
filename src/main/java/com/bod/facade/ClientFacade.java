@@ -16,6 +16,7 @@ public class ClientFacade {
 
         ClientDTO clientDTO = new ClientDTO();
 
+        clientDTO.setId(client.getId());
         clientDTO.setImg(client.getImg());
         clientDTO.setName(client.getName());
         clientDTO.setAge(countAge(client.getBirthDate()));
@@ -27,6 +28,18 @@ public class ClientFacade {
         return clientDTO;
     }
 
+    public int updateClientData(ClientDTO clientData) {
+        Client dataToPass = new Client();
+
+        dataToPass.setName(clientData.getName());
+        dataToPass.setGender(cacheGender(clientData.getGender()));
+        dataToPass.setHeight(clientData.getHeight());
+        dataToPass.setWeight(clientData.getWeight());
+        dataToPass.setLifeStyle(cacheLifeStyle(clientData.getLifeStyle()));
+        dataToPass.setId(clientData.getId());
+
+        return new ClientService().updateClientData(dataToPass);
+    }
 
     private String identifyGender(Gender gender) {
         String shortCut = gender.name();
@@ -38,14 +51,19 @@ public class ClientFacade {
         }
     }
 
+    private Gender cacheGender(String genderName) {
+        if (genderName.equals("male")) {
+            return Gender.M;
+        }
+        return Gender.F;
+    }
+
     private int countAge(LocalDate birthdate) {
         return Period.between(birthdate, LocalDate.now()).getYears();
     }
 
     private String identifyLifeStyle(LifeStyle lifeStyle) {
         switch (lifeStyle) {
-            case M:
-                return "Minimal";
             case L:
                 return "Lite";
             case A:
@@ -56,6 +74,21 @@ public class ClientFacade {
                 return "Extreme";
             default:
                 return "Minimal";
+        }
+    }
+
+    public LifeStyle cacheLifeStyle(String lifestyleName) {
+        switch (lifestyleName) {
+            case "Lite":
+                return LifeStyle.L;
+            case "Average":
+                return LifeStyle.A;
+            case "Hard":
+                return LifeStyle.H;
+            case "Extreme":
+                return LifeStyle.E;
+            default:
+                return LifeStyle.M;
         }
     }
 }

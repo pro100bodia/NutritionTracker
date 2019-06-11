@@ -1,52 +1,36 @@
 package com.bod.entity;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class DailyRationTest {
-    private DailyRation dailyRation;
+    private static Food food;
+    private static double amount;
+    private static DailyRation dailyRation;
 
-    @Before
-    public void setUp() throws Exception {
-        dailyRation = new DailyRation();
+    @BeforeClass
+    public static void setUp() throws Exception {
+        food = new Food();
+        food.setId(1);
 
-        FoodBuilder builder = new FoodBuilder();
-        builder.reset();
-        builder.setName("chicken egg");
-        builder.setNumber(100);
-        builder.setCalories(144);
-        builder.setProteins(12.7);
-        builder.setFats(10.7);
-        builder.setCarbohydrates(0.8);
-        builder.setAmount(100);
-        Food egg = builder.getResult();
+        amount = 1.0;
 
-        builder.reset();
-        builder.setName("rice");
-        builder.setNumber(100);
-        builder.setCalories(330);
-        builder.setProteins(7.0);
-        builder.setFats(1.0);
-        builder.setCarbohydrates(77.3);
-        builder.setAmount(100);
-        Food rice = builder.getResult();
-
-        dailyRation.addFood(egg);
-        dailyRation.addFood(rice);
-        dailyRation.accumulateEaten();
+        dailyRation = new DailyRation(new HashMap<>());
     }
 
     @Test
-    public void getFoodList() {
-        assertNotNull(dailyRation.getFoodList());
+    public void shouldAddNewFood() {
+        dailyRation.addFood(food, amount);
+        assertEquals(1.0, dailyRation.getFoodAmount(food), 0.0);
     }
 
     @Test
-    public void getEaten() {
-        NutritiveValue eaten = dailyRation.getEaten();
-        assertEquals(new NutritiveValue(474, 19.7, 11.7, 78.1), dailyRation.getEaten());
+    public void shouldAddExistedFood() {
+        dailyRation.addFood(food, amount);
+        assertEquals(2.0, dailyRation.getFoodAmount(food), 0.0);
     }
 }

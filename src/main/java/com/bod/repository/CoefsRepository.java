@@ -5,9 +5,8 @@ import com.bod.repository.specifications.SQLSpecification;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class CoefsRepository implements EntityRepository, UpdateQuery {
+public class CoefsRepository implements EntityRepository, ReadQuery {
 
     @Override
     public void createEntity(Object... args) throws SQLException {
@@ -39,9 +38,12 @@ public class CoefsRepository implements EntityRepository, UpdateQuery {
     }
 
     @Override
-    public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement specificUpdateStatement = NutritionConnection.getConnection().createStatement();
+    public int updateEntity(Object... args) throws SQLException {
+        return 0;
+    }
 
-        return sqlSpecification.toSqlClauses().executeUpdate();
+    @Override
+    public ResultSet specificReadQuery(SQLSpecification sqlSpecification) throws SQLException {
+        return sqlSpecification.toSqlClauses().executeQuery();
     }
 }

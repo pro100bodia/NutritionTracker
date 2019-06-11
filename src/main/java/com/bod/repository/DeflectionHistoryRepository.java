@@ -38,4 +38,9 @@ public class DeflectionHistoryRepository implements EntityRepository {
 
         deleteStatement.close();
     }
+
+    @Override
+    public int updateEntity(Object... args) throws SQLException {
+        return 0;
+    }
 }

@@ -1,8 +1,9 @@
 package com.bod.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
-public class Client {
+public class Client implements Databaseable {
     private int id;
     private String name;
     private String password;
@@ -133,5 +134,24 @@ public class Client {
 
     public void setRole(String string) {
         this.role = Role.valueOf(string);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return Double.compare(client.getHeight(), getHeight()) == 0 &&
+                Double.compare(client.getWeight(), getWeight()) == 0 &&
+                getName().equals(client.getName()) &&
+                getImg().equals(client.getImg()) &&
+                getBirthDate().equals(client.getBirthDate()) &&
+                getGender() == client.getGender() &&
+                getLifeStyle() == client.getLifeStyle();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getImg(), getBirthDate(), getGender(), getHeight(), getWeight(), getLifeStyle());
     }
 }

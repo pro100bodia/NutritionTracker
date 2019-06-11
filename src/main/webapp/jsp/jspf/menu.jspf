@@ -1,5 +1,11 @@
 <list id="main-menu">
-    <li class="inlined"><a href=""><fmt:message key="menu.daily_charts" /></a></li>
-    <li class="inlined"><a href=""><fmt:message key="menu.custom_food" /></a></li>
-    <li class="inlined"><a href=""><fmt:message key="menu.concrete_plate" /></a></li>
+    <li class="inlined"><a href="/nutrition_tracker/client_page#charts">
+        <fmt:message key="menu.daily_charts"/>
+    </a></li>
+    <li class="inlined"><a href="/nutrition_tracker/custom_food">
+        <fmt:message key="menu.custom_food"/>
+    </a></li>
+    <li class="inlined"><a href="/nutrition_tracker/concrete_day_plate">
+        <fmt:message key="menu.concrete_plate"/>
+    </a></li>
 </list>

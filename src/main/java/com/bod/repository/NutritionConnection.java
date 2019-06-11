@@ -13,7 +13,9 @@ import java.util.Properties;
 public class NutritionConnection {
     private static BasicDataSource ds = new BasicDataSource();
 
-    private static Logger LOG = Logger.getLogger(NutritionConnection.class);
+    private static final Logger LOG = Logger.getLogger(NutritionConnection.class);
+
+    private static Connection conn = null;
 
     static {
         try (InputStream input = NutritionConnection.class.getResourceAsStream("db_connection.properties")) {
@@ -38,17 +40,17 @@ public class NutritionConnection {
     }
 
     public static Connection getConnection() {
-        Connection conn = null;
+        if (conn == null) {
+            try {
+                conn = ds.getConnection();
+                LOG.info("Connected to database successfully " + conn);
+            } catch (SQLException e) {
+                LOG.fatal("Could not connect to database server", e);
+                e.printStackTrace();
+                System.exit(1);
+            }
 
-        try {
-            conn = ds.getConnection();
-            LOG.info("Connected to database successfully " + conn);
-        } catch (SQLException e) {
-            LOG.fatal("Could not connect to database server", e);
-            e.printStackTrace();
-            System.exit(1);
         }
-
         return conn;
     }
 }

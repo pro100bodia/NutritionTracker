@@ -3,6 +3,7 @@ package com.bod.filters;
 import com.bod.entity.Client;
 import com.bod.utils.AppUtils;
 import com.bod.utils.SecurityUtils;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SecurityFilter implements Filter {
+    private static Logger LOG = Logger.getLogger(SecurityFilter.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -21,34 +23,46 @@ public class SecurityFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
-        Client loginedUser = AppUtils.getClientFromSession(req);
-
-        String servletPath = req.getServletPath();
-
-        if (servletPath.equals("/login")) {
-            filterChain.doFilter(req, resp);
-            return;
-        }
-
-        if (loginedUser != null) {
-            String userName = loginedUser.getName();
-            String userRole = loginedUser.getRole().name();
-
-        }
-
         if (SecurityUtils.isSecurityPage(req)) {
-            boolean hasPermission = SecurityUtils.hasPermission(req);
-            if (!hasPermission) {
-                RequestDispatcher dispatcher
-                        = req.getServletContext().getRequestDispatcher("/WEB-INF/views/accessDeniedView.jsp");
+            LOG.info("Loading security page");
 
-                dispatcher.forward(req, resp);
+            Client client;
+            try {
+                client = AppUtils.getClientFromSession(req);
+            } catch (NullPointerException e) {
+                client = null;
             }
+
+            if (client != null) {
+                boolean hasPermission = SecurityUtils.hasPermission(req);
+                if (!hasPermission) {
+                    throwAccessDeniedError(resp);
+                } else {
+                    continueProcessing(req, resp, filterChain);
+                }
+            } else {
+                throwAccessDeniedError(resp);
+            }
+        } else {
+            continueProcessing(req, resp, filterChain);
         }
+
     }
 
     @Override
     public void destroy() {
 
+    }
+
+    private void throwAccessDeniedError(HttpServletResponse resp) throws ServletException, IOException {
+        LOG.error("Access denied");
+        resp.sendError(403);
+    }
+
+    private void continueProcessing(HttpServletRequest req,
+                                    HttpServletResponse resp, FilterChain filterChain)
+            throws IOException, ServletException {
+        LOG.info("Passing the request");
+        filterChain.doFilter(req, resp);
     }
 }

@@ -2,7 +2,9 @@ package com.bod.servlets;
 
 import com.bod.command.Command;
 import com.bod.command.GenerateClientData;
-import com.bod.entity.Client;
+import com.bod.command.GetFoodList;
+import com.bod.command.UpdateClientData;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,14 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ClientServlet extends HttpServlet {
+    private static final Logger LOG = Logger.getLogger(ClientServlet.class);
+    private Command command;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Client client = (Client) req.getSession().getAttribute("client");
-        int clientId = client.getId();
+        command = new GenerateClientData();
+        String url = command.execute(req);
 
-        Command command = new GenerateClientData();
-        String url = command.execute(req, clientId);
+        command = new GetFoodList();
+        command.execute(req);
 
-        req.getRequestDispatcher(url).include(req, resp);
+        req.getRequestDispatcher(url).forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        command = new UpdateClientData();
+        String url = command.execute(req);
+
+        req.getRequestDispatcher(url).forward(req, resp);
     }
 }

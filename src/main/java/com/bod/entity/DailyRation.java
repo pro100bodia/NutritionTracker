@@ -1,31 +1,30 @@
 package com.bod.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
 public class DailyRation {
-    private int id;
-    private List<Food> foodList;
-    private NutritiveValue eaten;
+    private Map<Food, Double> foodMap;
+    private Double amount;
 
-    public DailyRation() {
-        foodList = new ArrayList<>();
-        eaten = new NutritiveValue(0, 0, 0, 0);
+    public DailyRation(Map<Food, Double> foodMap) {
+        this.foodMap = foodMap;
     }
 
-    public void addFood(Food food) {
-        foodList.add(food);
+    public Map<Food, Double> getFoodMap() {
+        return foodMap;
     }
 
-    public int getId() {
-        return id;
+    public void addFood(Food food, Double amnt) {
+        if ((amount = foodMap.get(food)) != null) {
+            amount += amnt;
+        } else {
+            amount = amnt;
+        }
+
+        foodMap.put(food, amount);
     }
 
-    public List<Food> getFoodList() {
-        return foodList;
-    }
-
-    public NutritiveValue getEaten() {
-        return eaten;
+    public double getFoodAmount(Food food) {
+        return foodMap.get(food);
     }
 }

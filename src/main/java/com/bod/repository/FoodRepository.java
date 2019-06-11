@@ -1,13 +1,11 @@
 package com.bod.repository;
 
-import com.bod.repository.specifications.SQLSpecification;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class FoodRepository implements EntityRepository, UpdateQuery {
+public class FoodRepository implements EntityRepository {
     @Override
     public void createEntity(Object... args) throws SQLException {
         PreparedStatement insertFoodUnit = NutritionConnection.getConnection()
@@ -30,9 +28,7 @@ public class FoodRepository implements EntityRepository, UpdateQuery {
     public ResultSet readEntity(int id) throws SQLException {
         Statement readStatement = NutritionConnection.getConnection().createStatement();
 
-        ResultSet foodUnitsResultSet = readStatement.executeQuery("SELECT * FROM food");
-        readStatement.close();
-        return foodUnitsResultSet;
+        return readStatement.executeQuery("SELECT * FROM food");
     }
 
     @Override
@@ -47,13 +43,18 @@ public class FoodRepository implements EntityRepository, UpdateQuery {
     }
 
     @Override
-    public int specificUpdateQuery(SQLSpecification sqlSpecification) throws SQLException {
-        Statement updateStatement = NutritionConnection.getConnection().createStatement();
+    public int updateEntity(Object... args) throws SQLException {
+        PreparedStatement updateStatement = NutritionConnection.getConnection()
+                .prepareStatement("UPDATE food SET name=?, number=?, " +
+                        "calories=?, proteins=?, fats=?, carbohydrates=? WHERE id=?");
+        updateStatement.setString(1, (String) args[0]);
+        updateStatement.setString(2, (String) args[1]);
+        updateStatement.setString(3, (String) args[2]);
+        updateStatement.setString(4, (String) args[3]);
+        updateStatement.setString(5, (String) args[4]);
+        updateStatement.setString(6, (String) args[5]);
+        updateStatement.setString(7, (String) args[6]);
 
-        int result = sqlSpecification.toSqlClauses().executeUpdate();
-
-        updateStatement.close();
-
-        return result;
+        return updateStatement.executeUpdate();
     }
 }

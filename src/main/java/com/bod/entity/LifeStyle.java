@@ -6,13 +6,13 @@ import java.util.Properties;
 
 public enum LifeStyle {
     M, L, A, H, E;
-    private static final String PATH = "/amrConstants.properties";
+    private static final String PATH = "amrConstants.properties";
 
     private static final Logger LOG = Logger.getLogger(LifeStyle.class);
 
     private static Properties properties;
 
-    private String value;
+    private Double value;
 
     private void init() {
         if (properties == null) {
@@ -25,10 +25,10 @@ public enum LifeStyle {
                 System.exit(1);
             }
         }
-        value = (String) properties.get(this.toString());
+        value = Double.parseDouble((String) properties.get(this.toString()));
     }
 
-    public String getValue() {
+    public Double getValue() {
         if (value == null) {
             init();
         }

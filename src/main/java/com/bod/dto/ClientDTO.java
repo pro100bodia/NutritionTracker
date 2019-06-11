@@ -1,6 +1,7 @@
 package com.bod.dto;
 
 public class ClientDTO {
+    private int id;
     private String img;
     private String name;
     private int age;
@@ -63,5 +64,13 @@ public class ClientDTO {
 
     public void setLifeStyle(String lifeStyle) {
         this.lifeStyle = lifeStyle;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

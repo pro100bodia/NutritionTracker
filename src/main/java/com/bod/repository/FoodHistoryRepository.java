@@ -39,4 +39,9 @@ public class FoodHistoryRepository implements EntityRepository {
 
         readStatement.close();
     }
+
+    @Override
+    public int updateEntity(Object... args) throws SQLException {
+        return 0;
+    }
 }

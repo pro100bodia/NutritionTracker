@@ -10,4 +10,6 @@ public interface EntityRepository {
     ResultSet readEntity(int id) throws SQLException;
 
     void deleteEntity(int id) throws SQLException;
+
+    int updateEntity(Object... nums) throws SQLException;
 }
