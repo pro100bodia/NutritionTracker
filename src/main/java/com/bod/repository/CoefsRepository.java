@@ -1,10 +1,12 @@
 package com.bod.repository;
 
+import com.bod.repository.specifications.SQLSpecification;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CoefsRepository implements EntityRepository {
+public class CoefsRepository implements EntityRepository, ReadQuery {
 
     @Override
     public void createEntity(Object... args) throws SQLException {
@@ -38,5 +40,10 @@ public class CoefsRepository implements EntityRepository {
     @Override
     public int updateEntity(Object... args) throws SQLException {
         return 0;
+    }
+
+    @Override
+    public ResultSet specificReadQuery(SQLSpecification sqlSpecification) throws SQLException {
+        return sqlSpecification.toSqlClauses().executeQuery();
     }
 }

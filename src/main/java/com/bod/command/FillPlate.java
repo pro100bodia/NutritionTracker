@@ -16,7 +16,7 @@ public class FillPlate implements Command {
 
     @Override
     public String execute(HttpServletRequest req) {
-        int foodId = Integer.parseInt(req.getParameter("food_selection").trim());
+        int foodId = Integer.parseInt(req.getParameter("food_selection"));
         foodId--;
 
         List<Food> foodList = (ArrayList<Food>) req.getServletContext()

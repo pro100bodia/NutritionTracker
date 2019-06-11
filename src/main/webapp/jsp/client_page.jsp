@@ -106,9 +106,9 @@
         </div>
         <div class="col-sm-6"></div>
         <div class="col-sm-3">
-            <form action="">
-                <input type="submit" value='<fmt:message key="menu.calc" />'>
-            </form>
+            <button class="btn btn-default" onclick="caculateNorm()">
+                <fmt:message key="menu.calc"/>
+            </button>
         </div>
     </div>
 </div>
@@ -141,6 +141,28 @@
 
 </table>
 <!-- End Client`s plate -->
+<button class="btn btn-default" onclick="caculateNorm()">
+    <fmt:message key="menu.calc"/>
+</button>
+
+<table id="deflection">
+    <thead>
+    <tr>
+        <td>
+            <fmt:message key="food.calories"/>
+        </td>
+        <td>
+            <fmt:message key="food.proteins"/>
+        </td>
+        <td>
+            <fmt:message key="food.fats"/>
+        </td>
+        <td>
+            <fmt:message key="food.carbohydrates"/>
+        </td>
+    </tr>
+    </thead>
+</table>
 
 <!-- Deflection charts -->
 <div id="charts" style="height: 50px; border: 1px solid red;"></div>

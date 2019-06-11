@@ -14,14 +14,14 @@ public class GenerateClientData implements Command {
 
         ClientDTO client = clientFacade.getData(id);
 
-        req.setAttribute("id", id);
-        req.setAttribute("image", client.getImg());
-        req.setAttribute("name", client.getName());
-        req.setAttribute("age", client.getAge());
-        req.setAttribute("gender", client.getGender());
-        req.setAttribute("height", client.getHeight());
-        req.setAttribute("weight", client.getWeight());
-        req.setAttribute("lifeStyle", client.getLifeStyle());
+        req.getServletContext().setAttribute("id", id);
+        req.getServletContext().setAttribute("image", client.getImg());
+        req.getServletContext().setAttribute("name", client.getName());
+        req.getServletContext().setAttribute("age", client.getAge());
+        req.getServletContext().setAttribute("gender", client.getGender());
+        req.getServletContext().setAttribute("height", client.getHeight());
+        req.getServletContext().setAttribute("weight", client.getWeight());
+        req.getServletContext().setAttribute("lifeStyle", client.getLifeStyle());
 
         //todo change according to role
         return "jsp/client_page.jsp";

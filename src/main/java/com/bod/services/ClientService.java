@@ -18,9 +18,8 @@ public class ClientService {
 
         Client client = null;
 
-        try {
-            ResultSet clientRes = clientRepository.specificReadQuery(
-                    new ClientReadLoginDataSpecification(username, password));
+        try (ResultSet clientRes = clientRepository.specificReadQuery(
+                new ClientReadLoginDataSpecification(username, password))) {
 
             while (clientRes.next()) {
                 client = new Client();
@@ -84,4 +83,6 @@ public class ClientService {
 
         return 0;
     }
+
+
 }

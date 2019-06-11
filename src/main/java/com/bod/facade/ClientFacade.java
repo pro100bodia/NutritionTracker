@@ -77,7 +77,7 @@ public class ClientFacade {
         }
     }
 
-    private LifeStyle cacheLifeStyle(String lifestyleName) {
+    public LifeStyle cacheLifeStyle(String lifestyleName) {
         switch (lifestyleName) {
             case "Lite":
                 return LifeStyle.L;
