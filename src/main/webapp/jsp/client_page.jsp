@@ -135,8 +135,9 @@
         <fmt:message key="food.amount"/>
     </td>
     </thead>
+    <tbody>
 
-
+    </tbody>
 </table>
 <!-- End Client`s plate -->
 <button class="btn btn-default" onclick="caculateNorm()">
@@ -160,6 +161,7 @@
         </td>
     </tr>
     </thead>
+    <tr id="def_value"></tr>
 </table>
 
 <%@ include file="jspf/footer.jspf" %>

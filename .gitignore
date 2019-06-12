@@ -1,7 +1,6 @@
 /.idea
 *.iml
 /target/
-/logs/
-/src/main/webapp/jsp/interesting.jsp
 
 /logs/log_file.log
+/Nutrition Tracker.pptx

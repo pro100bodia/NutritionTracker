@@ -46,11 +46,9 @@ public class NormCommand implements Command {
 
         NutritiveValue deflection = eaten.subtract(norm);
 
-        return "<tr>" +
-                "<td>" + deflection.getCalories() + "</td>" +
+        return "<td>" + deflection.getCalories() + "</td>" +
                 "<td>" + deflection.getProtein() + "</td>" +
                 "<td>" + deflection.getFat() + "</td>" +
-                "<td>" + deflection.getCarbohydrates() + "</td>" +
-                "</tr>";
+                "<td>" + deflection.getCarbohydrates() + "</td>";
     }
 }

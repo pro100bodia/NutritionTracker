@@ -29,40 +29,38 @@ function setData(val){
 
 var state = 1;
 
+function enableInput(val){
+    state *= -1;
+    if(state == -1){
+        $('.personal_data input').prop('disabled', false);
+        $('#config_personal_data').html('<span class="glyphicon glyphicon-ok"></span>');
+    }else{
+        $('#config_personal_data').html('<span class="glyphicon glyphicon-cog"></span>');
+        $('.personal_data input').prop('disabled', true);
+        setData(val);
+    }
+}
 
-
-    function enableInput(val){
-        state *= -1;
-        if(state == -1){
-            $('.personal_data input').prop('disabled', false);
-            $('#config_personal_data').html('<span class="glyphicon glyphicon-ok"></span>');
-        }else{
-            $('#config_personal_data').html('<span class="glyphicon glyphicon-cog"></span>');
-            $('.personal_data input').prop('disabled', true);
-            setData(val);
+function addToPlate(food, amount){
+    $.post(
+        "/nutrition_tracker/fill_plate",
+        {
+            food_selection: food,
+            amount: amount
+        },
+        function(result){
+            $('.plate_table tbody').append(result);
         }
-    }
+    );
+}
 
-    function addToPlate(food, amount){
-        $.post(
-            "/nutrition_tracker/fill_plate",
-            {
-                food_selection: food,
-                amount: amount
-            },
-            function(result){
-                $('.plate_table')
-                .append(result);
-            }
-        );
-    }
-
-    function caculateNorm(){
-        $.post(
-            "/nutrition_tracker/norm",
-            function(result){
-                $('#deflection').append(result);
-            }
-        );
-    }
+function caculateNorm(){
+    $.post(
+        "/nutrition_tracker/norm",
+        function(result){
+            $('#def_value').html(result);
+            $('.plate_table tbody').text("");
+        }
+    );
+}
 
