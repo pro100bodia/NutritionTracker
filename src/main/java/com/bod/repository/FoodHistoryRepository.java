@@ -4,22 +4,20 @@ import java.sql.*;
 
 public class FoodHistoryRepository implements EntityRepository {
     @Override
-    public void createEntity(Object... args) {
-        try {
-            PreparedStatement createPreparedStatement = NutritionConnection.getConnection()
-                    .prepareStatement("INSERT INTO food_history VALUES(NULL, ?, ?, ?, ?)");
+    public void createEntity(Object... args) throws SQLException {
+        PreparedStatement createPreparedStatement = NutritionConnection.getConnection()
+                .prepareStatement("INSERT INTO food_history VALUES(NULL, ?, ?, ?, ?)");
 
-            createPreparedStatement.setInt(1, (Integer) args[0]);
-            createPreparedStatement.setInt(2, (Integer) args[1]);
-            createPreparedStatement.setDate(3, (Date) args[2]);
+        createPreparedStatement.setInt(1, (Integer) args[0]);
+        createPreparedStatement.setInt(2, (Integer) args[1]);
+        createPreparedStatement.setDouble(3, (Double) args[2]);
+        createPreparedStatement.setDate(4, (Date) args[3]);
 
-            createPreparedStatement.execute();
+        createPreparedStatement.execute();
 
 
-            createPreparedStatement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        createPreparedStatement.close();
+
     }
 
     @Override

@@ -5,12 +5,30 @@ import java.util.Objects;
 
 public class DeflectionHistory implements Databaseable {
     private int id;
+    private int clientId;
     private NutritiveValue value;
     private LocalDate date;
 
-    public DeflectionHistory(NutritiveValue value, LocalDate date) {
-        this.value = value;
+    public DeflectionHistory(int clientId, LocalDate date, NutritiveValue value) {
+        this.clientId = clientId;
         this.date = date;
+        this.value = value;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     public NutritiveValue getValue() {
@@ -19,10 +37,6 @@ public class DeflectionHistory implements Databaseable {
 
     public void setValue(NutritiveValue value) {
         this.value = value;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public LocalDate getDate() {

@@ -2,6 +2,8 @@ package com.bod.command;
 
 import com.bod.entity.*;
 import com.bod.facade.ClientFacade;
+import com.bod.facade.DailyFacade;
+import com.bod.facade.DeflectionFacade;
 import com.bod.services.CoefsService;
 import org.apache.log4j.Logger;
 
@@ -45,6 +47,17 @@ public class NormCommand implements Command {
         NutritiveValue norm = new NutritiveValue(calories, proteins, fats, carbohydrates);
 
         NutritiveValue deflection = eaten.subtract(norm);
+
+        //write deflection
+        DeflectionFacade deflectionFacade = new DeflectionFacade();
+        deflectionFacade.writeDeflection(deflection, client.getId());
+
+        //writing the plate
+        DailyFacade dailyFacade = new DailyFacade();
+        dailyFacade.writeToFoodHistory(dailyRation, client.getId());
+        //cleaning the plate
+        dailyRation.getFoodMap().clear();
+        LOG.info("Client`s plate size in the end: " + client.getDailyRation().getFoodMap().size());
 
         return "<td>" + deflection.getCalories() + "</td>" +
                 "<td>" + deflection.getProtein() + "</td>" +

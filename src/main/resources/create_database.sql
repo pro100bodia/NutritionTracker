@@ -1,6 +1,7 @@
 CREATE DATABASE nutrition CHARSET utf8;
 
 USE nutrition;
+SELECT * FROM coefs;
 
 CREATE TABLE coefs(
 	value TINYINT PRIMARY KEY,
@@ -88,6 +89,7 @@ CREATE TABLE food_history(
 	history_id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
     food_id INT NOT NULL,
+    amount DOUBLE NOT NULL,
     date DATE NOT NULL,
     FOREIGN KEY (client_id) REFERENCES clients(id),
     FOREIGN KEY (food_id) REFERENCES food(id)
