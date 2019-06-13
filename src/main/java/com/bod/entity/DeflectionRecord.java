@@ -3,13 +3,13 @@ package com.bod.entity;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class DeflectionHistory implements Databaseable {
+public class DeflectionRecord implements Databaseable {
     private int id;
     private int clientId;
     private NutritiveValue value;
     private LocalDate date;
 
-    public DeflectionHistory(int clientId, LocalDate date, NutritiveValue value) {
+    public DeflectionRecord(int clientId, LocalDate date, NutritiveValue value) {
         this.clientId = clientId;
         this.date = date;
         this.value = value;
@@ -50,8 +50,8 @@ public class DeflectionHistory implements Databaseable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DeflectionHistory)) return false;
-        DeflectionHistory that = (DeflectionHistory) o;
+        if (!(o instanceof DeflectionRecord)) return false;
+        DeflectionRecord that = (DeflectionRecord) o;
         return getValue().equals(that.getValue()) &&
                 getDate().equals(that.getDate());
     }

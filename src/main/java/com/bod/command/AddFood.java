@@ -7,6 +7,18 @@ import com.bod.services.FoodService;
 import javax.servlet.http.HttpServletRequest;
 
 public class AddFood implements Command {
+    /**
+     * Command to add custom food to the database
+     */
+
+    /**
+     * Creates new food instance and add it to the database
+     *
+     * @param req request containing all necessary data
+     * @return url to redirect to "custom food" page
+     * for further add
+     */
+
     @Override
     public String execute(HttpServletRequest req) {
         FoodBuilder builder = new FoodBuilder();

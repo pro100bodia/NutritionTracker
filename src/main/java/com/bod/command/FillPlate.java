@@ -12,7 +12,19 @@ import java.util.HashMap;
 import java.util.List;
 
 public class FillPlate implements Command {
+    /**
+     * Command to fill the today`s client "plate"
+     */
+
     private static final Logger LOG = Logger.getLogger(FillPlate.class);
+
+    /**
+     * gets the chosen food and puts it to client`s plate for further
+     * operations
+     *
+     * @param req request containing selected food unit
+     * @return string to output on the client`s personal page
+     */
 
     @Override
     public String execute(HttpServletRequest req) {

@@ -10,7 +10,20 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 public class NormCommand implements Command {
+    /**
+     * Command designed for client`s norm deflection
+     */
+
     private static final Logger LOG = Logger.getLogger(NormCommand.class);
+
+    /**
+     * Receive data from "plate" and client`s parameters
+     * and calculates norm deflection according to this data
+     *
+     * @param req request that contains data about client`s
+     *            "plate" and parameters
+     * @return norm deflection output
+     */
 
     @Override
     public String execute(HttpServletRequest req) {

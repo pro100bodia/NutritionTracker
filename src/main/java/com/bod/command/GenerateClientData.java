@@ -7,6 +7,18 @@ import com.bod.utils.AppUtils;
 import javax.servlet.http.HttpServletRequest;
 
 public class GenerateClientData implements Command {
+    /**
+     * Command to generate data about certain client
+     */
+
+    /**
+     * Get information about current user and outputs it
+     *
+     * @param req request that serves for the client to
+     *            get information about and further client`s
+     *            data receiving
+     * @return url for output
+     */
     @Override
     public String execute(HttpServletRequest req) {
         ClientFacade clientFacade = new ClientFacade();
@@ -23,7 +35,6 @@ public class GenerateClientData implements Command {
         req.getServletContext().setAttribute("weight", client.getWeight());
         req.getServletContext().setAttribute("lifeStyle", client.getLifeStyle());
 
-        //todo change according to role
         return "jsp/client_page.jsp";
     }
 }

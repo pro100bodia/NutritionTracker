@@ -1,6 +1,6 @@
 package com.bod.services;
 
-import com.bod.entity.DeflectionHistory;
+import com.bod.entity.DeflectionRecord;
 import com.bod.repository.DeflectionHistoryRepository;
 import org.apache.log4j.Logger;
 
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class DeflectionService {
     private static final Logger LOG = Logger.getLogger(DeflectionService.class);
 
-    public void writeDeflection(DeflectionHistory history) {
+    public void writeDeflection(DeflectionRecord history) {
         DeflectionHistoryRepository repo = new DeflectionHistoryRepository();
 
         Object[] args = new Object[6];

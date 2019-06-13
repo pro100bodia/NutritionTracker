@@ -7,8 +7,18 @@ import org.apache.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 public class UpdateClientData implements Command {
+    /**
+     * Command that executes when client sends request
+     * for his personal data update
+     */
     private static final Logger LOG = Logger.getLogger(UpdateClientData.class);
 
+    /**
+     * Collects data from input fields and send to database
+     *
+     * @param req request that contains parameters to change
+     * @return link to redirect after personal data update
+     */
     @Override
     public String execute(HttpServletRequest req) {
         ClientDTO clientDTO = new ClientDTO();

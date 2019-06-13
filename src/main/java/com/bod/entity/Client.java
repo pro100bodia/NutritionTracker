@@ -1,6 +1,7 @@
 package com.bod.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Client implements Databaseable {
@@ -8,9 +9,8 @@ public class Client implements Databaseable {
     private String name;
     private String password;
     private String img;
-    private String email;
     private DailyRation dailyRation;
-    private DeflectionHistory deflectionHistory;
+    private List<DeflectionRecord> deflectionHistory;
     private LocalDate birthDate;
     private Gender gender;
     private double height;
@@ -59,11 +59,11 @@ public class Client implements Databaseable {
         this.dailyRation = dailyRation;
     }
 
-    public DeflectionHistory getDeflectionHistory() {
+    public List<DeflectionRecord> getDeflectionHistory() {
         return deflectionHistory;
     }
 
-    public void setDeflectionHistory(DeflectionHistory deflectionHistory) {
+    public void setDeflectionHistory(List<DeflectionRecord> deflectionHistory) {
         this.deflectionHistory = deflectionHistory;
     }
 
@@ -109,15 +109,6 @@ public class Client implements Databaseable {
 
     public void setLifeStyle(LifeStyle lifeStyle) {
         this.lifeStyle = lifeStyle;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getImg() {

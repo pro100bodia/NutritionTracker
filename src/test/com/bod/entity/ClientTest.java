@@ -17,7 +17,7 @@
 //
 //    private DailyRation dailyRation;
 //
-//    private DeflectionHistory deflectionHistory;
+//    private DeflectionRecord deflectionHistory;
 //    private LocalDate birthDate;
 //    private Gender gender;
 //    private double height;
@@ -34,7 +34,7 @@
 //        client.setId(0);
 //        client.setNorm(new NutritiveValue(1716, 429, 190.6, 429));
 //        client.setDailyRation(new DailyRation());
-//        client.setDeflectionHistory(new DeflectionHistory(new NutritiveValue(1716, 429, 190.6, 429), LocalDate.of(2019, 05, 13)));
+//        client.setDeflectionHistory(new DeflectionRecord(new NutritiveValue(1716, 429, 190.6, 429), LocalDate.of(2019, 05, 13)));
 //        client.setBirthDate(LocalDate.of(2000, 05, 17));
 //        client.setGender(GenderEnum.M);
 //        client.setHeight(165.9);
@@ -69,7 +69,7 @@
 //
 //    @Test
 //    public void getDeflectionHistory() {
-//        assertEquals(new DeflectionHistory(new NutritiveValue(1716, 429, 190.6, 429),
+//        assertEquals(new DeflectionRecord(new NutritiveValue(1716, 429, 190.6, 429),
 //                        LocalDate.of(2019, 05, 13)),
 //                client.getDeflectionHistory()
 //        );

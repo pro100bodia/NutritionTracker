@@ -5,6 +5,7 @@ import com.bod.entity.Gender;
 import com.bod.entity.LifeStyle;
 import com.bod.repository.ClientRepository;
 import com.bod.repository.specifications.ClientReadLoginDataSpecification;
+import com.bod.repository.specifications.ClientReadNameSpecification;
 import org.apache.log4j.Logger;
 
 import java.sql.ResultSet;
@@ -85,4 +86,20 @@ public class ClientService {
     }
 
 
+    public String getName(int id) {
+        ClientRepository repo = new ClientRepository();
+
+        String name = null;
+        try (ResultSet result = repo.specificReadQuery(
+                new ClientReadNameSpecification(id))) {
+            while (result.next()) {
+                name = result.getString(1);
+            }
+            LOG.info("Read client`s name successfully");
+        } catch (SQLException e) {
+            LOG.error("Failed to read client`s name:" + e);
+        }
+
+        return name;
+    }
 }

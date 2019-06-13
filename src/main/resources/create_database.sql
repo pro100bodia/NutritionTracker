@@ -85,6 +85,27 @@ CREATE TABLE deflection_history(
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
+INSERT INTO deflection_history VALUES(NULL, 1, "2019-06-13", 0, 0, 0, 0);
+INSERT INTO deflection_history VALUES(NULL, 1, "2019-06-14", -100, -100, -100, -100);
+INSERT INTO deflection_history VALUES(NULL, 1, "2019-06-15", -200, -200, -200, -200);
+
+INSERT INTO deflection_history VALUES(NULL, 2, "2019-06-13", -54, -17, -380, -40);
+INSERT INTO deflection_history VALUES(NULL, 2, "2019-06-14", -100, -100, -100, -100);
+INSERT INTO deflection_history VALUES(NULL, 2, "2019-06-15", -200, -300, -400, -500);
+
+INSERT INTO deflection_history VALUES(NULL, 3, "2019-06-13", 90, 340, -900, -480);
+INSERT INTO deflection_history VALUES(NULL, 3, "2019-06-14", 200, -600, 300, 120);
+INSERT INTO deflection_history VALUES(NULL, 3, "2019-06-15", 200, 500, -450, -230);
+
+INSERT INTO deflection_history VALUES(NULL, 4, "2019-06-13", 120, 250, 320, 670);
+INSERT INTO deflection_history VALUES(NULL, 4, "2019-06-14", -120, 500, 500, -130);
+INSERT INTO deflection_history VALUES(NULL, 4, "2019-06-15", 250, 900, -20, -120);
+
+INSERT INTO deflection_history VALUES(NULL, 5, "2019-06-13", 450, 880, -340, -190);
+INSERT INTO deflection_history VALUES(NULL, 5, "2019-06-14", 150, 130, -120, -100);
+INSERT INTO deflection_history VALUES(NULL, 5, "2019-06-15", -260, 250, -200, -420);
+
+
 CREATE TABLE food_history(
 	history_id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
@@ -94,3 +115,28 @@ CREATE TABLE food_history(
     FOREIGN KEY (client_id) REFERENCES clients(id),
     FOREIGN KEY (food_id) REFERENCES food(id)
 );
+
+INSERT INTO food_history VALUES(NULL, 1, 12, 400, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 1, 11, 300, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 1, 10, 200, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 1, 19, 100, "2019-06-10");
+    
+INSERT INTO food_history VALUES(NULL, 2, 8,  400, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 2, 12, 230, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 2, 15, 200, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 2, 18, 100, "2019-06-10");
+    
+INSERT INTO food_history VALUES(NULL, 3, 12, 400, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 3, 11, 400, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 3, 17, 400, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 3, 5, 400, "2019-06-10");
+    
+INSERT INTO food_history VALUES(NULL, 4, 14, 100, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 4, 7, 450, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 4, 2, 200, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 4, 7, 320, "2019-06-10");
+    
+INSERT INTO food_history VALUES(NULL, 5, 2, 140, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 5, 5, 340, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 5, 7, 240, "2019-06-10");
+INSERT INTO food_history VALUES(NULL, 5, 10, 400, "2019-06-10");

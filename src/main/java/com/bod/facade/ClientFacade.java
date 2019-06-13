@@ -1,15 +1,26 @@
 package com.bod.facade;
 
 import com.bod.dto.ClientDTO;
+import com.bod.dto.ClientStatisticsDTO;
 import com.bod.entity.Client;
 import com.bod.entity.Gender;
 import com.bod.entity.LifeStyle;
+import com.bod.entity.NutritiveValue;
+import com.bod.repository.ClientRepository;
+import com.bod.repository.specifications.ClientStatisticsSpecification;
 import com.bod.services.ClientService;
+import org.apache.log4j.Logger;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ClientFacade {
+    private static final Logger LOG = Logger.getLogger(ClientFacade.class);
+
     public ClientDTO getData(int id) {
         ClientService clientService = new ClientService();
         Client client = clientService.getRawData(id);
@@ -90,5 +101,35 @@ public class ClientFacade {
             default:
                 return LifeStyle.M;
         }
+    }
+
+    public List<ClientStatisticsDTO> getClientStatistics() {
+        ClientRepository repo = new ClientRepository();
+
+        List<ClientStatisticsDTO> clients = null;
+        try {
+            ResultSet result = repo.specificReadQuery(new ClientStatisticsSpecification());
+
+            clients = new LinkedList<>();
+            while (result.next()) {
+                ClientStatisticsDTO client = new ClientStatisticsDTO();
+                client.setName(result.getString(1));
+                client.setAverageDeflection(new NutritiveValue(
+                        result.getDouble(2),
+                        result.getDouble(3),
+                        result.getDouble(4),
+                        result.getDouble(5)
+                ));
+                client.setFavFood(result.getString(6));
+
+                clients.add(client);
+            }
+
+            LOG.info("Read clients statistics successfully");
+        } catch (SQLException e) {
+            LOG.error("Failed to read clients statistics");
+        }
+
+        return clients;
     }
 }
