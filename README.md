@@ -13,4 +13,4 @@ Clone this repo and build the applicatoin with maven using mvn package command. 
 
 <b>Run instructions</b>
 
-Start your tomcat servlet container and type http://localhost:8080/nutrition_tracker/ in your browser`s adddress bar.
+Start your tomcat servlet container and type http://localhost:8080/nutrition_tracker/ in your browser`s adddress bar. MySql server should also run on your server.
