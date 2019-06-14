@@ -10,8 +10,15 @@ import java.util.stream.IntStream;
 
 public class GetClientsInfoTable implements Command {
     /**
-     * @param req
-     * @return
+     * Command to generate information about client
+     * name, average norm deflection and favorite food
+     */
+
+    /**
+     * Provides output of clients statistics 5 records
+     * per page
+     * @param req request where data for output is storred
+     * @return doctor page url for redirect
      */
     @Override
     public String execute(HttpServletRequest req) {
