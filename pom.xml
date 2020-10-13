@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <junit.vertion>4.11</junit.vertion>
+        <junit.vertion>4.13.1</junit.vertion>
         <log4j.vertion>1.2.17</log4j.vertion>
         <org.apache.commons.commons-dbcp2>2.6.0</org.apache.commons.commons-dbcp2>
         <servlet.api.version>4.0.1</servlet.api.version>
