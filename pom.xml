@@ -20,7 +20,7 @@
         <log4j.vertion>1.2.17</log4j.vertion>
         <org.apache.commons.commons-dbcp2>2.6.0</org.apache.commons.commons-dbcp2>
         <servlet.api.version>4.0.1</servlet.api.version>
-        <mysql.version>8.0.15</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <jstl.version>1.2</jstl.version>
         <jsp.api.version>2.0</jsp.api.version>
         <tomcat.version>2.2</tomcat.version>
